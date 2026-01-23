@@ -1,0 +1,1637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="TFAM Global - A global community of faith-rooted justice activists advancing dignity and equity for all people.">
+    <meta name="keywords" content="TFAM Global, faith, justice, LGBTQIA+, equity, human rights">
+    <meta name="author" content="TFAM Global">
+    
+    <!-- Security Headers -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' https:; img-src 'self' data: https:;">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon.ico">
+    
+    <title>TFAM Global - Faith in Action for Justice</title>
+    
+    <style>
+        /* ==================== ROOT VARIABLES ==================== */
+        :root {
+            --primary-red: #d1242a;
+            --deep-red: #8B0000;
+            --presbyter-blue: #4169E1;
+            --charcoal: #1C1C1C;
+            --dark-gray: #2D2D2D;
+            --medium-gray: #4A4A4A;
+            --light-gray: #D3D3D3;
+            --pure-white: #FFFFFF;
+            --off-white: #F5F5F5;
+        }
+
+        /* ==================== RESET ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--charcoal);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background: var(--pure-white);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* ==================== COOKIE CONSENT ==================== */
+        .cookie-consent {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--charcoal);
+            color: var(--pure-white);
+            padding: 2rem;
+            z-index: 9999;
+            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.5);
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+            border-top: 4px solid var(--primary-red);
+        }
+
+        .cookie-consent.show {
+            transform: translateY(0);
+        }
+
+        .cookie-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .cookie-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .cookie-text p {
+            margin-bottom: 0.5rem;
+        }
+
+        .cookie-text strong {
+            color: var(--primary-red);
+        }
+
+        .cookie-text a {
+            color: var(--presbyter-blue);
+            text-decoration: underline;
+        }
+
+        .cookie-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        /* ==================== NEWSLETTER POPUP ==================== */
+        .newsletter-popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(28, 28, 28, 0.9);
+            backdrop-filter: blur(5px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .newsletter-popup.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .newsletter-modal {
+            background: var(--pure-white);
+            padding: 4rem;
+            border-radius: 20px;
+            max-width: 550px;
+            width: 90%;
+            position: relative;
+            transform: scale(0.8);
+            transition: transform 0.3s ease;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            border: 3px solid var(--primary-red);
+        }
+
+        .newsletter-popup.show .newsletter-modal {
+            transform: scale(1);
+        }
+
+        .close-popup {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 2.5rem;
+            color: var(--medium-gray);
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            border-radius: 50%;
+        }
+
+        .close-popup:hover {
+            background: var(--off-white);
+            color: var(--primary-red);
+            transform: rotate(90deg);
+        }
+
+        .newsletter-header h2 {
+            color: var(--primary-red);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .newsletter-header p {
+            color: var(--dark-gray);
+            margin-bottom: 2rem;
+        }
+
+        .newsletter-form input {
+            width: 100%;
+            padding: 1rem 1.25rem;
+            border: 2px solid var(--light-gray);
+            border-radius: 8px;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .newsletter-form input:focus {
+            outline: none;
+            border-color: var(--presbyter-blue);
+        }
+
+        .dont-show-label {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.9rem;
+            color: var(--medium-gray);
+            cursor: pointer;
+            margin-top: 1rem;
+        }
+
+        /* ==================== MARQUEE ==================== */
+       .construction-marquee {
+            background: var(--light-gray);
+            color: var(--deep-red);
+            padding: 14px 0;
+            overflow: hidden;
+            font-weight: 600;
+        }
+
+        .marquee-content {
+            display: flex;
+            animation: scroll 30s linear infinite;
+            white-space: nowrap;
+        }
+
+        .marquee-content span {
+            padding: 0 60px;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* ==================== HEADER ==================== */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--primary-red);
+            z-index: 1000;
+            padding: 1.25rem 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        header.scrolled {
+            padding: 0.75rem 0;
+        }
+
+        .navbar {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--pure-white);
+        }
+
+        .logo-img {
+            height: 55px;
+            width: auto;
+        }
+
+        .logo-highlight {
+            color: var(--charcoal);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--pure-white);
+            font-weight: 500;
+            position: relative;
+            padding: 0.5rem 0;
+            transition: color 0.2s;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--presbyter-blue);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--presbyter-blue);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+        }
+
+        .menu-toggle span {
+            width: 28px;
+            height: 3px;
+            background: var(--pure-white);
+            transition: all 0.3s;
+            border-radius: 2px;
+        }
+
+        /* ==================== BUTTONS ==================== */
+        .btn {
+            padding: 1rem 2.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-align: center;
+            border: 2px solid transparent;
+        }
+
+        .btn-primary {
+            background: var(--primary-red);
+            color: var(--pure-white);
+            border-color: var(--primary-red);
+        }
+
+        .btn-primary:hover {
+            background: var(--presbyter-blue);
+            border-color: var(--presbyter-blue);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(65, 105, 225, 0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--pure-white);
+            border-color: var(--pure-white);
+        }
+
+        .btn-outline:hover {
+            background: var(--presbyter-blue);
+            border-color: var(--presbyter-blue);
+            transform: translateY(-3px);
+        }
+
+        .btn-full {
+            width: 100%;
+        }
+
+        /* ==================== HERO ==================== */
+        .hero {
+            height: 100vh;
+            min-height: 600px;
+            background: linear-gradient(135deg, rgba(28, 28, 28, 0.8), rgba(139, 0, 0, 0.7)), var(--charcoal);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--pure-white);
+            position: relative;
+            margin-top: 85px;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, transparent 0%, rgba(28, 28, 28, 0.4) 100%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            padding: 2rem;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.6);
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.1rem, 2vw, 1.5rem);
+            margin-bottom: 3rem;
+            opacity: 0.95;
+            line-height: 1.7;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            color: var(--pure-white);
+            opacity: 0.7;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .scroll-arrow {
+            font-size: 1.5rem;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-10px); }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(10px); }
+        }
+
+        /* ==================== SECTIONS ==================== */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            color: var(--charcoal);
+            margin-bottom: 1rem;
+            text-align: center;
+            font-weight: 700;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-red), var(--presbyter-blue));
+            border-radius: 3px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--medium-gray);
+            margin-bottom: 3rem;
+            font-style: italic;
+        }
+
+        /* ==================== WHO WE ARE ==================== */
+        .who-we-are {
+            padding: 6rem 2rem;
+            background: var(--off-white);
+        }
+
+        .who-content {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .who-text-box {
+            background: var(--pure-white);
+            padding: 3rem;
+            border-radius: 20px;
+            color: var(--deep-red);
+            border: 4px solid var(--primary-red);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .text-content p {
+            font-size: 1.1rem;
+            line-height: 1.9;
+            margin-bottom: 1.5rem;
+        }
+
+        .scripture-refs {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+            padding-top: 2rem;
+            border-top: 3px solid var(--presbyter-blue);
+            justify-content: center;
+        }
+
+        .scripture-verse {
+            font-style: italic;
+            font-weight: 600;
+            color: var(--presbyter-blue);
+            font-size: 1.05rem;
+        }
+
+        .scripture-divider {
+            color: var(--primary-red);
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .leaders-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .leader-card {
+            background: var(--pure-white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 3px solid transparent;
+        }
+
+        .leader-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(220, 20, 60, 0.3);
+            border-color: var(--primary-red);
+        }
+
+        .leader-image {
+            width: 100%;
+            height: 280px;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--primary-red), var(--presbyter-blue));
+        }
+
+        .leader-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--pure-white);
+            font-size: 5rem;
+            font-weight: 800;
+        }
+
+        .leader-info {
+            padding: 1.75rem;
+        }
+
+        .leader-name {
+            color: var(--charcoal);
+            font-size: 1.5rem;
+            margin-bottom: 0rem;
+            font-weight: 700;
+        }
+
+        .leader-role {
+            color: var(--presbyter-blue);
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+            font-size: 1.05rem;
+        }
+
+        .leader-location {
+            color: var(--medium-gray);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .leader-quote {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s, padding 0.3s;
+            font-style: italic;
+            color: var(--primary-red);
+            padding-top: 0;
+            border-top: 0px solid var(--off-white);
+            font-weight: 500;
+        }
+
+        .leader-card:hover .leader-quote {
+            max-height: 150px;
+            padding-top: 1rem;
+            border-top: 2px solid var(--off-white);
+        }
+
+        /* ==================== MAP SECTION ==================== */
+        .map-section {
+            padding: 6rem 2rem;
+            background: var(--pure-white);
+        }
+
+        .map-wrapper {
+            background: var(--off-white);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            border: 3px solid var(--charcoal);
+        }
+
+        .world-map {
+            width: 100%;
+            height: 600px;
+            background: linear-gradient(135deg, #E8F4F8, #FFF8E1);
+            border-radius: 15px;
+            position: relative;
+            overflow: visible;
+            box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .map-pin {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .pin-marker {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: var(--primary-red);
+            border: 3px solid var(--pure-white);
+            border-radius: 50% 50% 50% 0;
+            transform: rotate(-45deg);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s;
+        }
+
+        .pin-marker::after {
+            content: '';
+            position: absolute;
+            width: 14px;
+            height: 14px;
+            background: var(--pure-white);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .pin-pulse {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            border: 3px solid var(--primary-red);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+            opacity: 0.7;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 0.7;
+            }
+            100% {
+                transform: scale(2.5);
+                opacity: 0;
+            }
+        }
+
+        .map-pin:hover .pin-marker {
+            transform: rotate(-45deg) scale(1.3);
+            background: var(--presbyter-blue);
+        }
+
+        .pin-popup {
+            position: absolute;
+            bottom: 120%;
+            left: 50%;
+            transform: translateX(-50%) scale(0);
+            background: var(--pure-white);
+            padding: 1.75rem;
+            border-radius: 12px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            min-width: 280px;
+            max-width: 320px;
+            z-index: 100;
+            transition: all 0.3s;
+            opacity: 0;
+            pointer-events: none;
+            border: 3px solid var(--primary-red);
+        }
+
+        .map-pin:hover .pin-popup {
+            transform: translateX(-50%) scale(1);
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .pin-popup h4 {
+            color: var(--primary-red);
+            margin-bottom: 0.75rem;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .pin-popup p {
+            color: var(--dark-gray);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .popup-link {
+            color: var(--presbyter-blue);
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+
+        .popup-link:hover {
+            color: var(--primary-red);
+        }
+
+        /* ==================== NEWS SECTION ==================== */
+        .news-section {
+            padding: 6rem 2rem;
+            background: var(--off-white);
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .news-card {
+            background: var(--pure-white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .news-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            border-color: var(--primary-red);
+        }
+
+        .news-image {
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .news-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--pure-white), var(--off-white));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--pure-white);
+            font-size: 4rem;
+        }
+
+        .news-content {
+            padding: 1.75rem;
+        }
+
+        .news-content h3 {
+            color: var(--charcoal);
+            font-size: 1.3rem;
+            margin-bottom: 0.75rem;
+            font-weight: 700;
+        }
+
+        .news-content p {
+            color: var(--dark-gray);
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+
+        .news-date {
+            color: var(--medium-gray);
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .news-cta {
+            text-align: center;
+        }
+
+        /* ==================== FOOTER ==================== */
+        .footer {
+            background: var(--charcoal);
+            color: var(--pure-white);
+            padding: 6rem 2rem 2rem;
+        }
+
+        .footer-main {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 4rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-col h3 {
+            color: var(--primary-red);
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid var(--medium-gray);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--pure-white);
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            font-family: inherit;
+        }
+
+        .contact-form input::placeholder,
+        .contact-form textarea::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--presbyter-blue);
+            box-shadow: 0 0 0 3px rgba(65, 105, 225, 0.2);
+        }
+
+        .contact-form textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .footer-brand {
+            text-align: center;
+        }
+
+        .footer-logo-img {
+            height: 70px;
+            margin: 0 auto 1rem;
+        }
+
+        .brand-name {
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+
+        .brand-tfam {
+            color: var(--pure-white);
+        }
+
+        .brand-global {
+            color: var(--primary-red);
+        }
+
+        .brand-tagline {
+            font-style: italic;
+            margin: 1.5rem 0;
+            color: var(--presbyter-blue);
+            font-size: 1.05rem;
+        }
+
+        .scripture-quote {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            border-left: 4px solid var(--primary-red);
+            font-style: italic;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+        }
+
+        .scripture-quote cite {
+            display: block;
+            margin-top: 0.5rem;
+            color: var(--presbyter-blue);
+            font-style: normal;
+            font-weight: 600;
+        }
+
+        .support-text {
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .donation-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .footer-bottom {
+            padding-top: 2rem;
+            border-top: 2px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+
+        .footer-links {
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.5rem 1.5rem;
+        }
+
+        .footer-links a {
+            color: var(--presbyter-blue);
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-red);
+        }
+
+        .separator {
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .copyright {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
+        /* ==================== RESPONSIVE ==================== */
+        @media (max-width: 968px) {
+            .nav-links {
+                position: fixed;
+                left: -100%;
+                top: 85px;
+                flex-direction: column;
+                background: var(--primary-red);
+                width: 100%;
+                text-align: center;
+                padding: 2rem;
+                transition: left 0.3s;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .who-content {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-main {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .world-map {
+                height: 450px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .hero {
+                min-height: 550px;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .scripture-refs {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .scripture-divider {
+                display: none;
+            }
+
+            .cookie-content {
+                flex-direction: column;
+            }
+
+            .cookie-buttons {
+                width: 100%;
+                flex-direction: column;
+            }
+
+            .newsletter-modal {
+                padding: 2rem;
+            }
+
+            .world-map {
+                height: 350px;
+            }
+
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Cookie Consent Banner -->
+    <div id="cookieConsent" class="cookie-consent">
+        <div class="cookie-content">
+            <div class="cookie-text">
+                <p><strong>🍪 We value your privacy</strong></p>
+                <p>We use essential cookies to ensure proper functionality and optional cookies to enhance your experience. 
+                   <a href="cookie-policy.html" target="_blank">Learn more about our cookie policy</a>
+                </p>
+            </div>
+            <div class="cookie-buttons">
+                <button id="acceptCookies" class="btn btn-primary">Accept All</button>
+                <button id="rejectCookies" class="btn btn-outline">Essential Only</button>
+                <!-- <button id="rejectAllCookies" class="btn btn-outline">Reject All</button> -->
+                <button id="customizeCookies" class="btn btn-outline">Customize</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Newsletter Popup Modal -->
+    <div id="newsletterPopup" class="newsletter-popup">
+        <div class="newsletter-modal">
+            <button class="close-popup" id="closeNewsletter" aria-label="Close newsletter popup">&times;</button>
+            <div class="newsletter-header">
+                <h2>📬 Stay Connected</h2>
+                <p>Join our global community and receive weekly updates on our justice work worldwide.</p>
+            </div>
+            <form id="newsletterForm" class="newsletter-form">
+                <input type="email" id="newsletterEmail" placeholder="Enter your email address" required>
+                <button type="submit" class="btn btn-primary btn-full">Subscribe Now</button>
+            </form>
+            <label class="dont-show-label">
+                <input type="checkbox" id="dontShowAgain">
+                <span>Don't show this again</span>
+            </label>
+        </div>
+    </div>
+
+    <!-- Main Header Navigation -->
+    <header id="mainHeader">
+         <!-- Construction Marquee Banner -->
+    <div class="construction-marquee">
+        <div class="marquee-content">
+            <span> 🚧 Please be patient with us, the full website is under construction - Launch on 1st March 2026! 🚧 </span>
+            <span> 🚧 Please be patient with us, the full website is under construction - Launch on 1st March 2026! 🚧 </span>
+            <span> 🚧 Please be patient with us, the full website is under construction - Launch on 1st March 2026! 🚧 </span>
+            <span> 🚧 Please be patient with us, the full website is under construction - Launch on 1st March 2026! 🚧 </span>
+            <span> 🚧 Please be patient with us, the full website is under construction - Launch on 1st March 2026! 🚧 </span>
+            <span> 🚧 Please be patient with us, the full website is under construction - Launch on 1st March 2026! 🚧 </span>
+        </div>
+    </div>
+        <nav class="navbar">
+            <a href="#home" class="logo">
+                <img src="assets/images/logo-black.png" alt="TFAM Global Logo" class="logo-img" onerror="this.style.display='none'">
+                 <!-- <span class="logo-text">TFAM <span class="logo-highlight">Global</span></span> -->
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#who-we-are">Who We Are</a></li>
+                <li><a href="#global-presence">Global Presence</a></li>
+                <li><a href="#news">News</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-overlay"><img src="assets/images/hero-bg.jpg" alt="Hero Background" class="hero-bg"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">Faith in Action for Justice</h1>
+            <p class="hero-subtitle">A global community of faith-rooted justice activists advancing dignity, equity, and freedom for all people.</p>
+            <div class="cta-buttons">
+                <a href="#who-we-are" class="btn btn-primary">Learn More</a>
+                <a href="#contact" class="btn btn-outline">Join the Work</a>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span>Scroll Down</span>
+            <div class="scroll-arrow">↓</div>
+        </div>
+    </section>
+
+    <!-- Who We Are Section -->
+    <section class="who-we-are" id="who-we-are">
+        <div class="container">
+            <h2 class="section-title">Who We Are</h2>
+            <div class="who-content">
+                <div class="who-text-box">
+                    <div class="text-content">
+                        <p>TFAM Global is a global community of faith-rooted justice activists advancing dignity and equity for all people. We believe faith and justice are inextricable, grounded in the call to love our neighbors and care for the least of humanity.</p>
+                        
+                        <p>We advocate for LGBTQIA+ justice, gender equity, and health equity by challenging systems of harm and exclusion, reflecting God's compassionate and inclusive love, especially toward those made vulnerable by economic injustice, oppression, and social exclusion.</p>
+                        
+                        <p>Working across the UK and Europe, Latin America and the Caribbean, Central America, East and West Africa, with collaborative partners in Asia and South Africa, we transform faith into action for justice across cultures, languages, and geographies.</p>
+                    </div>
+                    <div class="scripture-refs">
+                        <span class="scripture-verse">Mark 12:30-31</span>
+                        <span class="scripture-divider">|</span>
+                        <span class="scripture-verse">Matthew 25:40</span>
+                    </div>
+                </div>
+                <div class="leaders-grid">
+                    <div class="leader-card">
+                        <div class="leader-image">
+                            <img src="assets/images/leader1.jpg" alt="Bishop Yvette A. Flunder" class="leader-img">
+                            <div class="leader-placeholder"></div>
+                        </div>
+                        <div class="leader-info">
+                            <h3 class="leader-name">Bishop Yvette A. Flunder</h3>
+                            <p class="leader-role">Presiding Prelate</p>
+                        </div>
+                    </div>
+                    <div class="leader-card">
+                        <div class="leader-image">
+                            <img src="assets/images/leader2.jpg" alt="Rev. Dr. Andrea E. Vassell" class="leader-img">
+                            <div class="leader-placeholder"></div>
+                        </div>
+                        <div class="leader-info">
+                            <h3 class="leader-name">Bishop Andrea E. Vassell</h3>
+                            <p class="leader-role">Bishop of Global Ministries</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Global Presence Map Section -->
+    <section class="map-section" id="global-presence">
+        <div class="container">
+            <h2 class="section-title">Our Locations</h2>
+            <p class="section-subtitle">Transforming faith into action across continents</p>
+            <div class="map-wrapper">
+                <div class="world-map" id="worldMap">
+                    <div class="map-overlay"></div>
+                    <!-- UK & Europe -->
+                    <div class="map-pin" style="top: 20%; left: 48%;">
+                        <div class="pin-marker"></div>
+                        <div class="pin-pulse"></div>
+                        <div class="pin-popup">
+                            <h4>UK & Europe</h4>
+                            <p>Leading advocacy and policy work across European nations, building inclusive faith communities.</p>
+                            <a href="#" class="popup-link">Learn more →</a>
+                        </div>
+                    </div>
+                    <!-- Latin America & Caribbean -->
+                    <div class="map-pin" style="top: 60%; left: 25%;">
+                        <div class="pin-marker"></div>
+                        <div class="pin-pulse"></div>
+                        <div class="pin-popup">
+                            <h4>Latin America & Caribbean</h4>
+                            <p>Empowering grassroots movements for rights and gender justice.</p>
+                            <a href="#" class="popup-link">Learn more →</a>
+                        </div>
+                    </div>
+                    <!-- Central America -->
+                    <div class="map-pin" style="top: 45%; left: 22%;">
+                        <div class="pin-marker"></div>
+                        <div class="pin-pulse"></div>
+                        <div class="pin-popup">
+                            <h4>Central America</h4>
+                            <p>Supporting community-led initiatives for health equity and social justice.</p>
+                            <a href="#" class="popup-link">Learn more →</a>
+                        </div>
+                    </div>
+                    <!-- West Africa -->
+                    <!-- <div class="map-pin" style="top: 40%; left: 48%;">
+                        <div class="pin-marker"></div>
+                        <div class="pin-pulse"></div>
+                        <div class="pin-popup">
+                            <h4>West Africa</h4>
+                            <p>Coming Soon!</p>
+                            <a href="#" class="popup-link">Learn more →</a>
+                        </div>
+                    </div> -->
+                    <!-- East Africa -->
+                    <div class="map-pin" style="top: 35%; left: 60%;">
+                        <div class="pin-marker"></div>
+                        <div class="pin-pulse"></div>
+                        <div class="pin-popup">
+                            <h4>East Africa</h4>
+                            <p>Advancing faith-based advocacy for marginalized communities.</p>
+                            <a href="#" class="popup-link">Learn more →</a>
+                        </div>
+                    </div>
+                    <!-- Asia Partners -->
+                    <div class="map-pin" style="top: 30%; left: 75%;">
+                        <div class="pin-marker"></div>
+                        <div class="pin-pulse"></div>
+                        <div class="pin-popup">
+                            <h4>Asia (Partners)</h4>
+                            <p>Collaborative partnerships supporting justice movements across the region.</p>
+                            <a href="#" class="popup-link">Learn more →</a>
+                        </div>
+                    </div>
+                    <!-- South Africa -->
+                    <!-- <div class="map-pin" style="top: 70%; left: 55%;">
+                        <div class="pin-marker"></div>
+                        <div class="pin-pulse"></div>
+                        <div class="pin-popup">
+                            <h4>South Africa</h4>
+                            <p>Coming Soon!</p>
+                            <a href="#" class="popup-link">Learn more →</a>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- News & Updates Section -->
+    <section class="news-section" id="news">
+        <div class="container">
+            <h2 class="section-title">News & Updates</h2>
+            <p class="section-subtitle">Follow our work as it unfolds across communities</p>
+            
+            <div class="news-grid">
+                <article class="news-card">
+                    <div class="news-image">
+                        <div class="news-placeholder"><img src="assets/images/news-1.jpg" alt="Community Gathering in West Africa"></div>
+                    </div>
+                    <div class="news-content">
+                        <h3>TFAM Global Pulpit Connect Launched</h3>
+                        <p>TFAM Global Pulpit Connect is a space where the Word moves with us, speaks through us, and shows up in every language. Because justice isn’t local. Liberation isn’t limited. And faith? Faith crosses borders, and so do we.</p>
+                        <span class="news-date">18th January 2025</span>
+                    </div>
+                </article>
+                
+                <article class="news-card">
+                    <div class="news-image">
+                        <div class="news-placeholder"><img src="assets/images/news-2.jpg" alt="Policy Advocacy Summit London"></div>
+                    </div>
+                    <div class="news-content">
+                        <h3>TFAM Holy Convocation 25</h3>
+                        <p>TFAM Global Marked the 25th Holy Convocation in Atlanta, gathering faith leaders and communities during a pivotal political moment described by organizers as “such a time as this.” The historic week centered healing, celebration, liberation, and spiritual renewal through worship, workshops, and legacy-focused programming, reaffirming a shared conviction in faith, justice, and collective hope.</p>
+                        <span class="news-date">July 2025</span>
+                    </div>
+                </article>
+                
+                <article class="news-card">
+                    <div class="news-image">
+                        <div class="news-placeholder"><img src="assets/images/news-3.jpg" alt="Health Equity Workshop Success"><a href="#" class="popup-link"><img src="assets/images/news-3.jpg" alt="Health Equity Workshop Success"></a></div>
+                    </div>
+                    <div class="news-content">
+                        <h3>TFAM Connect Newsletter</h3>
+                        <p>The second edition of TFAM Connect brings together updates, reports, and stories from across TFAM’s global regions, connecting communities through faith-rooted justice work.</p>
+                        <span class="news-date">July 2025</span>
+                    </div>
+                </article>
+            </div>
+            
+            <div class="news-cta">
+                <a href="https://www.instagram.com/tfam_presbyters?igsh=MTBzY3B2NW0yb3MwYw==" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                    Follow Us on Instagram
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer / Contact Section -->
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="footer-main">
+                <div class="footer-col">
+                    <h3>Get In Touch</h3>
+                    <form class="contact-form" id="contactForm">
+                        <input type="text" name="name" placeholder="Your Name *" required>
+                        <input type="email" name="email" placeholder="Your Email *" required>
+                        <textarea name="message" placeholder="Your Message *" required></textarea>
+                        <button type="submit" class="btn btn-primary btn-full">Send Message</button>
+                    </form>
+                </div>
+                
+                <div class="footer-col footer-brand">
+                    <div class="footer-logo">
+                        <img src="assets/images/logo-white.png" alt="TFAM Global logo-white" class="footer-logo-img" onerror="this.style.display='none'">
+                        <!-- <div class="brand-name">
+                            <span class="brand-tfam">TFAM</span> 
+                            <span class="brand-global">Global</span>
+                        </div> -->
+                    </div>
+                    <p class="brand-tagline">Faith-rooted. Justice-driven. Globally connected.</p>
+                    <blockquote class="scripture-quote">
+                        "Let justice roll down like waters."<br>
+                        <cite>— Amos 5:24</cite>
+                    </blockquote>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Support Our Work</h3>
+                    <p class="support-text">Your generosity sustains justice-led faith work worldwide.</p>
+                    <div class="donation-buttons">
+                        <button class="btn btn-primary btn-full">Give Once</button>
+                        <button class="btn btn-outline btn-full">Monthly Support</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="footer-links">
+                    <a href="privacy-policy.html">Privacy Policy</a>
+                    <span class="separator">|</span>
+                    <a href="cookie-policy.html">Cookie Policy</a>
+                    <span class="separator">|</span>
+                    <a href="security-policy.html">Security Policy</a>
+                </div>
+                <p class="copyright">&copy; 2026 TFAM Global. All rights reserved. Advancing dignity and equity for all people.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // ========================================
+        // MOBILE MENU TOGGLE
+        // ========================================
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+        
+        if (menuToggle && navLinks) {
+            menuToggle.addEventListener('click', function() {
+                navLinks.classList.toggle('active');
+                menuToggle.classList.toggle('active');
+            });
+            
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', function() {
+                    navLinks.classList.remove('active');
+                    menuToggle.classList.remove('active');
+                });
+            });
+            
+            document.addEventListener('click', function(e) {
+                if (!menuToggle.contains(e.target) && !navLinks.contains(e.target)) {
+                    navLinks.classList.remove('active');
+                    menuToggle.classList.remove('active');
+                }
+            });
+        }
+        
+        // ========================================
+        // HEADER SCROLL EFFECT
+        // ========================================
+        const header = document.getElementById('mainHeader');
+        
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+        
+        // ========================================
+        // SMOOTH SCROLLING
+        // ========================================
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                
+                if (target) {
+                    const headerHeight = header.offsetHeight;
+                    const targetPosition = target.offsetTop - headerHeight - 20;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // ========================================
+        // CONTACT FORM HANDLING
+        // ========================================
+        const contactForm = document.getElementById('contactForm');
+        
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const formData = new FormData(contactForm);
+                const name = formData.get('name');
+                const email = formData.get('email');
+                const message = formData.get('message');
+                
+                if (!name || !email || !message) {
+                    alert('Please fill in all fields.');
+                    return;
+                }
+                
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(email)) {
+                    alert('Please enter a valid email address.');
+                    return;
+                }
+                
+                alert(`Thank you, ${name}! Your message has been received. We'll get back to you soon at ${email}.`);
+                contactForm.reset();
+            });
+        }
+        
+        // ========================================
+        // COOKIE CONSENT
+        // ========================================
+        (function() {
+            const COOKIE_CONSENT_KEY = 'tfam_cookie_consent';
+            const COOKIE_EXPIRY_DAYS = 365;
+            
+            const CookieManager = {
+                set: function(name, value, days) {
+                    const expires = new Date();
+                    expires.setTime(expires.getTime() + (days * 24 * 60 * 60 * 1000));
+                    document.cookie = `${name}=${value};expires=${expires.toUTCString()};path=/;SameSite=Strict;Secure`;
+                },
+                
+                get: function(name) {
+                    const nameEQ = name + "=";
+                    const ca = document.cookie.split(';');
+                    for(let i = 0; i < ca.length; i++) {
+                        let c = ca[i];
+                        while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+                        if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+                    }
+                    return null;
+                }
+            };
+            
+            function initCookieConsent() {
+                const cookieConsent = document.getElementById('cookieConsent');
+                const acceptBtn = document.getElementById('acceptCookies');
+                const rejectBtn = document.getElementById('rejectCookies');
+                const customizeBtn = document.getElementById('customizeCookies');
+                
+                const consent = CookieManager.get(COOKIE_CONSENT_KEY);
+                
+                if (!consent) {
+                    setTimeout(() => {
+                        cookieConsent.classList.add('show');
+                    }, 1000);
+                }
+                
+                if (acceptBtn) {
+                    acceptBtn.addEventListener('click', function() {
+                        CookieManager.set(COOKIE_CONSENT_KEY, 'all', COOKIE_EXPIRY_DAYS);
+                        cookieConsent.classList.remove('show');
+                    });
+                }
+                
+                if (rejectBtn) {
+                    rejectBtn.addEventListener('click', function() {
+                        CookieManager.set(COOKIE_CONSENT_KEY, 'essential', COOKIE_EXPIRY_DAYS);
+                        cookieConsent.classList.remove('show');
+                    });
+                }
+                
+                if (customizeBtn) {
+                    customizeBtn.addEventListener('click', function() {
+                        window.location.href = 'cookie-policy.html';
+                    });
+                }
+            }
+            
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', initCookieConsent);
+            } else {
+                initCookieConsent();
+            }
+        })();
+        
+        // ========================================
+        // NEWSLETTER POPUP
+        // ========================================
+        (function() {
+            const NEWSLETTER_KEY = 'tfam_newsletter_shown';
+            const DONT_SHOW_KEY = 'tfam_newsletter_dont_show';
+            const SHOW_DELAY = 5000;
+            const SHOW_INTERVAL_DAYS = 7;
+            
+            function shouldShowPopup() {
+                const dontShow = localStorage.getItem(DONT_SHOW_KEY);
+                if (dontShow === 'true') {
+                    return false;
+                }
+                
+                const lastShown = localStorage.getItem(NEWSLETTER_KEY);
+                if (lastShown) {
+                    const lastShownDate = new Date(parseInt(lastShown));
+                    const now = new Date();
+                    const daysSinceShown = (now - lastShownDate) / (1000 * 60 * 60 * 24);
+                    
+                    if (daysSinceShown < SHOW_INTERVAL_DAYS) {
+                        return false;
+                    }
+                }
+                
+                return true;
+            }
+            
+            function showNewsletterPopup() {
+                const popup = document.getElementById('newsletterPopup');
+                
+                if (popup && shouldShowPopup()) {
+                    setTimeout(() => {
+                        popup.classList.add('show');
+                        localStorage.setItem(NEWSLETTER_KEY, Date.now().toString());
+                    }, SHOW_DELAY);
+                }
+            }
+            
+            function hideNewsletterPopup() {
+                const popup = document.getElementById('newsletterPopup');
+                if (popup) {
+                    popup.classList.remove('show');
+                }
+            }
+            
+            function initNewsletter() {
+                const popup = document.getElementById('newsletterPopup');
+                const closeBtn = document.getElementById('closeNewsletter');
+                const form = document.getElementById('newsletterForm');
+                const dontShowCheckbox = document.getElementById('dontShowAgain');
+                
+                if (closeBtn) {
+                    closeBtn.addEventListener('click', hideNewsletterPopup);
+                }
+                
+                if (popup) {
+                    popup.addEventListener('click', function(e) {
+                        if (e.target === popup) {
+                            hideNewsletterPopup();
+                        }
+                    });
+                }
+                
+                if (form) {
+                    form.addEventListener('submit', function(e) {
+                        e.preventDefault();
+                        
+                        const emailInput = document.getElementById('newsletterEmail');
+                        const email = emailInput.value.trim();
+                        
+                        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                        if (!emailRegex.test(email)) {
+                            alert('Please enter a valid email address.');
+                            return;
+                        }
+                        
+                        if (dontShowCheckbox && dontShowCheckbox.checked) {
+                            localStorage.setItem(DONT_SHOW_KEY, 'true');
+                        }
+                        
+                        alert(`Thank you for subscribing! We'll send updates to ${email}`);
+                        hideNewsletterPopup();
+                        form.reset();
+                    });
+                }
+                
+                showNewsletterPopup();
+            }
+            
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', initNewsletter);
+            } else {
+                initNewsletter();
+            }
+        })();
+    </script>
+</body>
+</html>
