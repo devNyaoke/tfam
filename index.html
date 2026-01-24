@@ -75,14 +75,14 @@
             bottom: 0;
             left: 0;
             right: 0;
-            background: var(--charcoal);
-            color: var(--pure-white);
-            padding: 2rem;
+            background: var(--medium-gray);
+            color: var(--off-white);
+            padding: 1rem;
             z-index: 9999;
             box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.5);
             transform: translateY(100%);
             transition: transform 0.3s ease;
-            border-top: 4px solid var(--primary-red);
+            border-top: 2px solid var(--primary-red);
         }
 
         .cookie-consent.show {
@@ -224,8 +224,10 @@
 
         /* ==================== MARQUEE ==================== */
        .construction-marquee {
-            background: var(--light-gray);
-            color: var(--deep-red);
+            background: var(--primary-red);
+            border-radius: 1rem;
+            border-color: var(--charcoal);;
+            color: var(--pure-white);
             padding: 14px 0;
             overflow: hidden;
             font-weight: 600;
@@ -251,7 +253,7 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: var(--primary-red);
+            background: var(--off-white);
             z-index: 1000;
             padding: 1.25rem 0;
             transition: all 0.3s ease;
@@ -296,7 +298,7 @@
         }
 
         .nav-links a {
-            color: var(--pure-white);
+            color: var(--primary-red);
             font-weight: 500;
             position: relative;
             padding: 0.5rem 0;
@@ -499,47 +501,51 @@
 
         /* ==================== WHO WE ARE ==================== */
         .who-we-are {
-            padding: 6rem 2rem;
+            padding: 2rem 1rem;
             background: var(--off-white);
         }
 
         .who-content {
             display: grid;
-            grid-template-columns: 1.2fr 1fr;
-            gap: 4rem;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
             align-items: start;
         }
 
         .who-text-box {
-            background: var(--pure-white);
-            padding: 3rem;
+            background: var(--off-white);
+            padding: 2rem;
             border-radius: 20px;
-            color: var(--deep-red);
+            color: var(--charcoal);
             border: 4px solid var(--primary-red);
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
         }
 
         .text-content p {
-            font-size: 1.1rem;
-            line-height: 1.9;
-            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 1.25rem;
         }
 
         .scripture-refs {
             display: flex;
             align-items: center;
-            gap: 1.5rem;
-            margin-top: 2.5rem;
+            gap: 1rem;
+            margin-top: auto;
             padding-top: 2rem;
             border-top: 3px solid var(--presbyter-blue);
             justify-content: center;
+            flex-wrap: wrap;
         }
 
         .scripture-verse {
             font-style: italic;
             font-weight: 600;
             color: var(--presbyter-blue);
-            font-size: 1.05rem;
+            font-size: 0.95rem;
         }
 
         .scripture-divider {
@@ -549,9 +555,7 @@
         }
 
         .leaders-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
+            display: contents;
         }
 
         .leader-card {
@@ -562,6 +566,9 @@
             transition: all 0.3s ease;
             cursor: pointer;
             border: 3px solid transparent;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
         }
 
         .leader-card:hover {
@@ -572,13 +579,17 @@
 
         .leader-image {
             width: 100%;
-            height: 280px;
+            height: 0;
+            padding-bottom: 100%; /* Creates 1:1 aspect ratio (square) */
             position: relative;
             overflow: hidden;
             background: linear-gradient(135deg, var(--primary-red), var(--presbyter-blue));
         }
 
         .leader-placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
             display: flex;
@@ -589,19 +600,31 @@
             font-weight: 800;
         }
 
+        .leader-image img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
         .leader-info {
-            padding: 1.75rem;
+            padding: 1.25rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
         }
 
         .leader-name {
             color: var(--charcoal);
             font-size: 1.5rem;
-            margin-bottom: 0rem;
+            margin-bottom: 0.5rem;
             font-weight: 700;
         }
 
         .leader-role {
-            color: var(--presbyter-blue);
+            color: var(--primary-red);
             font-weight: 600;
             margin-bottom: 0.4rem;
             font-size: 1.05rem;
@@ -618,10 +641,11 @@
             overflow: hidden;
             transition: max-height 0.3s, padding 0.3s;
             font-style: italic;
-            color: var(--primary-red);
+            color: var(--presbyter-blue);
             padding-top: 0;
             border-top: 0px solid var(--off-white);
             font-weight: 500;
+            margin-top: auto;
         }
 
         .leader-card:hover .leader-quote {
@@ -632,15 +656,15 @@
 
         /* ==================== MAP SECTION ==================== */
         .map-section {
-            padding: 6rem 2rem;
+            padding: 2rem 1rem;
             background: var(--pure-white);
         }
 
         .map-wrapper {
             background: var(--off-white);
-            padding: 3rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            padding: 1rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
             border: 3px solid var(--charcoal);
         }
 
@@ -762,14 +786,14 @@
 
         /* ==================== NEWS SECTION ==================== */
         .news-section {
-            padding: 6rem 2rem;
+            padding: 2rem 1rem;
             background: var(--off-white);
         }
 
         .news-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2.5rem;
+            gap: 1.5rem;
             margin-bottom: 3rem;
         }
 
@@ -837,14 +861,14 @@
         .footer {
             background: var(--charcoal);
             color: var(--pure-white);
-            padding: 6rem 2rem 2rem;
+            padding: 2rem 1rem 1rem;
         }
 
         .footer-main {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 4rem;
-            margin-bottom: 3rem;
+            gap: 2rem;
+            margin-bottom: 1rem;
         }
 
         .footer-col h3 {
@@ -1111,7 +1135,7 @@
     </div>
         <nav class="navbar">
             <a href="#home" class="logo">
-                <img src="assets/images/logo-black.png" alt="TFAM Global Logo" class="logo-img" onerror="this.style.display='none'">
+                <img src="assets/images/logo.png" alt="TFAM Global Logo" class="logo-img" onerror="this.style.display='none'">
                  <!-- <span class="logo-text">TFAM <span class="logo-highlight">Global</span></span> -->
             </a>
             <ul class="nav-links" id="navLinks">
@@ -1123,7 +1147,7 @@
             </ul>
             <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu">
                 <span></span>
-                <span></span>
+                <!-- <span></span> -->
                 <span></span>
             </button>
         </nav>
@@ -1174,7 +1198,9 @@
                         <div class="leader-info">
                             <h3 class="leader-name">Bishop Yvette A. Flunder</h3>
                             <p class="leader-role">Presiding Prelate</p>
-                        </div>
+                            <p class="leader-location">📍 Global</p>
+                            <div class="leader-quote">"Free people; Free people"</div>
+                        </div>                        
                     </div>
                     <div class="leader-card">
                         <div class="leader-image">
@@ -1184,6 +1210,9 @@
                         <div class="leader-info">
                             <h3 class="leader-name">Bishop Andrea E. Vassell</h3>
                             <p class="leader-role">Bishop of Global Ministries</p>
+                            <p class="leader-location">📍 Global</p>
+                            <div class="leader-quote">"Iron Sharpens Iron"</div>
+                        </div>                        
                         </div>
                     </div>
                 </div>
@@ -1358,6 +1387,12 @@
                     <div class="donation-buttons">
                         <button class="btn btn-primary btn-full">Give Once</button>
                         <button class="btn btn-outline btn-full">Monthly Support</button>
+                        <p style="color: #d1242a;">Checks can be sent to:</p>
+                        <ul>
+                            <li>YAF Foundation 8400</li>
+                            <li>Enterprise Way</li>
+                            <li>Oakland, CA 9461</li>
+                        </ul>
                     </div>
                 </div>
             </div>
