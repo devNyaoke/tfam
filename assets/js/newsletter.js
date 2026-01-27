@@ -98,16 +98,45 @@
                 alert(`Thank you for subscribing! We'll send updates to ${email}`);
                 
                 // TODO: Send to actual newsletter service
-                // Example: Mailchimp, SendGrid, etc.
-                
+                     // Google Form submission URL
+            const GOOGLE_FORM_ID = '1FAIpQLSd_dlu-v0-BXjJKoElb9_4EwHOXt_5wABgtXqm6PYXsACUzHw'; // From your newsletter form URL
+            const EMAIL_ENTRY = 'entry.2'; // Your email field ID
+            
+            const googleFormURL = 'https://docs.google.com/forms/d/e/' + GOOGLE_FORM_ID + '/formResponse';
+            
+            // Create form data for Google Forms
+            const googleFormData = new FormData();
+            googleFormData.append(EMAIL_ENTRY, email);
+            
+            // Submit to Google Forms
+            fetch(googleFormURL, {
+                method: 'POST',
+                body: googleFormData,
+                mode: 'no-cors'
+            })
+            .then(function() {
+                alert('Thank you for subscribing! We\'ll send updates to ' + email);
                 hideNewsletterPopup();
                 form.reset();
+            })
+            .catch(function(error) {
+                console.error('Error:', error);
+                alert('Oops! There was a problem. Please try again later.');
             });
-        }
-        
-        // Show popup
-        showNewsletterPopup();
+        });
     }
+    
+    showNewsletterPopup();
+}
+                
+    //             hideNewsletterPopup();
+    //             form.reset();
+    //         });
+    //     }
+    //
+    //     // Show popup
+    //     showNewsletterPopup();
+    // }
     
     // Initialize on DOM ready
     if (document.readyState === 'loading') {
