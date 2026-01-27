@@ -65,6 +65,11 @@
             padding-bottom: 1rem;
         }
 
+        .cookie-icon {
+            font-size: 2rem;
+            margin-right: 0.5rem;
+        }
+
         .last-updated {
             color: var(--medium-gray);
             font-style: italic;
@@ -74,56 +79,115 @@
             border-left: 4px solid var(--presbyter-blue);
         }
 
-        h2 {
-            color: var(--charcoal);
-            margin-top: 3rem;
+        .accordion-item {
             margin-bottom: 1rem;
-            font-size: 1.8rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid var(--off-white);
+            border: 2px solid var(--off-white);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s ease;
         }
 
-        h3 {
-            color: var(--presbyter-blue);
-            margin-top: 2rem;
-            margin-bottom: 1rem;
+        .accordion-item:hover {
+            border-color: var(--primary-red);
+            box-shadow: 0 4px 12px rgba(220, 20, 60, 0.1);
+        }
+
+        .accordion-header {
+            background: var(--charcoal);
+            color: var(--pure-white);
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+            user-select: none;
+        }
+
+        .accordion-header:hover {
+            background: var(--primary-red);
+        }
+
+        .accordion-header.active {
+            background: var(--primary-red);
+        }
+
+        .accordion-title {
             font-size: 1.3rem;
+            font-weight: 700;
+            margin: 0;
         }
 
-        p {
-            margin-bottom: 1.5rem;
+        .accordion-icon {
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+            font-weight: bold;
+        }
+
+        .accordion-header.active .accordion-icon {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease, padding 0.3s ease;
+            background: var(--pure-white);
+        }
+
+        .accordion-content.active {
+            max-height: 5000px;
+            padding: 2rem;
+            border-top: 2px solid var(--off-white);
+        }
+
+        .accordion-body h3 {
+            color: var(--presbyter-blue);
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .accordion-body h3:first-child {
+            margin-top: 0;
+        }
+
+        .accordion-body h4 {
+            color: var(--charcoal);
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+            font-size: 1.05rem;
+        }
+
+        .accordion-body p {
+            margin-bottom: 1rem;
             line-height: 1.8;
         }
 
-        ul, ol {
-            margin-bottom: 1.5rem;
+        .accordion-body ul, .accordion-body ol {
+            margin-bottom: 1rem;
             padding-left: 2rem;
         }
 
-        li {
-            margin-bottom: 0.75rem;
+        .accordion-body li {
+            margin-bottom: 0.5rem;
             line-height: 1.8;
         }
 
-        a {
-            color: var(--presbyter-blue);
-            text-decoration: underline;
-            transition: color 0.2s;
-        }
-
-        a:hover {
-            color: var(--primary-red);
-        }
-
-        strong {
+        .accordion-body strong {
             color: var(--charcoal);
             font-weight: 700;
+        }
+
+        .accordion-body a {
+            color: var(--presbyter-blue);
+            text-decoration: underline;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            margin: 2rem 0;
+            margin: 1.5rem 0;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
 
@@ -143,13 +207,13 @@
             background: var(--off-white);
         }
 
-        tbody tr:hover {
-            background: #ffe6e6;
-        }
-
-        .cookie-icon {
-            font-size: 2rem;
-            margin-right: 0.5rem;
+        code {
+            background: var(--off-white);
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            color: var(--primary-red);
+            font-size: 0.9em;
         }
 
         .info-box {
@@ -168,29 +232,26 @@
             border-radius: 4px;
         }
 
-        code {
-            background: var(--off-white);
-            padding: 2px 6px;
-            border-radius: 3px;
-            font-family: 'Courier New', monospace;
-            color: var(--primary-red);
-            font-size: 0.9em;
+        .controls {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
         }
 
-        .contact-info {
-            background: var(--charcoal);
+        .control-btn {
+            padding: 0.75rem 1.5rem;
+            border: 2px solid var(--primary-red);
+            background: transparent;
+            color: var(--primary-red);
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .control-btn:hover {
+            background: var(--primary-red);
             color: var(--pure-white);
-            padding: 2rem;
-            border-radius: 8px;
-            margin: 2rem 0;
-        }
-
-        .contact-info strong {
-            color: var(--primary-red);
-        }
-
-        .contact-info a {
-            color: var(--presbyter-blue);
         }
 
         @media (max-width: 640px) {
@@ -202,8 +263,16 @@
                 font-size: 2rem;
             }
 
-            h2 {
-                font-size: 1.5rem;
+            .accordion-title {
+                font-size: 1.1rem;
+            }
+
+            .controls {
+                flex-direction: column;
+            }
+
+            .control-btn {
+                width: 100%;
             }
 
             table {
@@ -221,311 +290,244 @@
         <a href="index.html" class="back-link">Back to Home</a>
         
         <h1><span class="cookie-icon">🍪</span> Cookie Policy</h1>
-        <p class="last-updated"><strong>Last Updated:</strong> January 23, 2026</p>
+        <p class="last-updated"><strong>Last Updated:</strong> January 27, 2026</p>
         
-        <h2>1. What Are Cookies?</h2>
-        <p>Cookies are small text files that are placed on your computer, smartphone, or other device when you visit a website. They are widely used to make websites work more efficiently and provide information to website owners.</p>
-        
-        <p>Cookies typically contain:</p>
-        <ul>
-            <li>The name of the website that created the cookie</li>
-            <li>A unique identifier for your device</li>
-            <li>An expiration date (some cookies last only for the duration of your session, while others persist)</li>
-            <li>Information about your preferences or activities on the site</li>
-        </ul>
-        
-        <div class="info-box">
-            <p><strong>Important:</strong> Cookies do not contain personal information unless you have specifically provided it. They cannot access other files on your computer or device, and they cannot carry viruses or malware.</p>
+        <div class="controls">
+            <button class="control-btn" id="expandAll">Expand All</button>
+            <button class="control-btn" id="collapseAll">Collapse All</button>
         </div>
-        
-        <h2>2. How TFAM Global Uses Cookies</h2>
-        <p>We use cookies and similar technologies for several purposes:</p>
-        
-        <h3>2.1 Essential Functions</h3>
-        <ul>
-            <li>Remembering your cookie consent preferences</li>
-            <li>Maintaining your session as you navigate our site</li>
-            <li>Ensuring security and preventing fraud</li>
-            <li>Enabling core website functionality</li>
-        </ul>
-        
-        <h3>2.2 Performance and Analytics</h3>
-        <ul>
-            <li>Understanding how visitors use our website</li>
-            <li>Identifying which pages are most popular</li>
-            <li>Analyzing traffic patterns and user behavior</li>
-            <li>Measuring the effectiveness of our content</li>
-        </ul>
-        
-        <h3>2.3 User Experience</h3>
-        <ul>
-            <li>Remembering your preferences and settings</li>
-            <li>Personalizing content based on your interests</li>
-            <li>Providing relevant information and updates</li>
-            <li>Improving website navigation</li>
-        </ul>
-        
-        <h2>3. Types of Cookies We Use</h2>
-        
-        <h3>3.1 Essential Cookies (Always Active)</h3>
-        <p>These cookies are necessary for the website to function properly. They cannot be disabled as they are essential for providing services you have requested.</p>
-        
-        <table>
-            <thead>
-                <tr>
-                    <th>Cookie Name</th>
-                    <th>Purpose</th>
-                    <th>Duration</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><code>tfam_cookie_consent</code></td>
-                    <td>Stores your cookie consent preferences</td>
-                    <td>365 days</td>
-                </tr>
-                <tr>
-                    <td><code>session_id</code></td>
-                    <td>Maintains your session state while browsing</td>
-                    <td>Session (deleted when browser closes)</td>
-                </tr>
-                <tr>
-                    <td><code>security_token</code></td>
-                    <td>Protects against cross-site request forgery attacks</td>
-                    <td>Session</td>
-                </tr>
-            </tbody>
-        </table>
-        
-        <h3>3.2 Performance and Analytics Cookies (Optional)</h3>
-        <p>These cookies help us understand how visitors interact with our website by collecting and reporting information anonymously.</p>
-        
-        <table>
-            <thead>
-                <tr>
-                    <th>Cookie Name</th>
-                    <th>Purpose</th>
-                    <th>Duration</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><code>_ga</code></td>
-                    <td>Google Analytics - Distinguishes unique users</td>
-                    <td>2 years</td>
-                </tr>
-                <tr>
-                    <td><code>_gid</code></td>
-                    <td>Google Analytics - Distinguishes users</td>
-                    <td>24 hours</td>
-                </tr>
-                <tr>
-                    <td><code>_gat</code></td>
-                    <td>Google Analytics - Throttles request rate</td>
-                    <td>1 minute</td>
-                </tr>
-            </tbody>
-        </table>
-        
-        <h3>3.3 Functional Cookies (Optional)</h3>
-        <p>These cookies enable enhanced functionality and personalization, such as remembering your preferences.</p>
-        
-        <table>
-            <thead>
-                <tr>
-                    <th>Cookie Name</th>
-                    <th>Purpose</th>
-                    <th>Duration</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><code>tfam_newsletter_shown</code></td>
-                    <td>Tracks if newsletter popup has been shown</td>
-                    <td>7 days</td>
-                </tr>
-                <tr>
-                    <td><code>tfam_newsletter_dont_show</code></td>
-                    <td>Remembers if you opted out of newsletter popup</td>
-                    <td>Permanent (until cleared)</td>
-                </tr>
-                <tr>
-                    <td><code>language_preference</code></td>
-                    <td>Stores your preferred language</td>
-                    <td>365 days</td>
-                </tr>
-            </tbody>
-        </table>
-        
-        <h3>3.4 Marketing Cookies (Not Currently Used)</h3>
-        <p>We do not currently use marketing or advertising cookies. If we implement them in the future, this policy will be updated and you will be notified.</p>
-        
-        <h2>4. Third-Party Cookies</h2>
-        <p>Some cookies on our site are set by third-party services we use. These third parties have their own privacy and cookie policies:</p>
-        
-        <h3>4.1 Google Analytics</h3>
-        <p>We use Google Analytics to analyze website usage and improve our services. Google Analytics uses cookies to collect information about your use of our website.</p>
-        <ul>
-            <li><strong>Provider:</strong> Google LLC</li>
-            <li><strong>Purpose:</strong> Website analytics and performance measurement</li>
-            <li><strong>Data Collected:</strong> Pages visited, time on site, browser type, referring site</li>
-            <li><strong>Privacy Policy:</strong> <a href="https://policies.google.com/privacy" target="_blank">https://policies.google.com/privacy</a></li>
-            <li><strong>Opt-Out:</strong> <a href="https://tools.google.com/dlpage/gaoptout" target="_blank">Google Analytics Opt-out Browser Add-on</a></li>
-        </ul>
-        
-        <h3>4.2 Social Media Platforms (When Applicable)</h3>
-        <p>If we embed social media content or plugins (such as Instagram feeds), those platforms may set cookies:</p>
-        <ul>
-            <li><strong>Instagram:</strong> <a href="https://help.instagram.com/1896641480634370" target="_blank">Cookie Policy</a></li>
-            <li><strong>Facebook:</strong> <a href="https://www.facebook.com/policies/cookies" target="_blank">Cookie Policy</a></li>
-            <li><strong>Twitter:</strong> <a href="https://twitter.com/en/privacy" target="_blank">Privacy Policy</a></li>
-        </ul>
-        
-        <h2>5. How to Manage Cookies</h2>
-        <p>You have several options for controlling and managing cookies:</p>
-        
-        <h3>5.1 Our Cookie Consent Tool</h3>
-        <p>When you first visit our website, you'll see a cookie consent banner allowing you to:</p>
-        <ul>
-            <li><strong>Accept All:</strong> Allow all cookies including analytics and functional cookies</li>
-            <li><strong>Essential Only:</strong> Allow only essential cookies required for the site to function</li>
-            <li><strong>Customize:</strong> View this policy and make informed choices</li>
-        </ul>
-        
-        <div class="warning-box">
-            <p><strong>Note:</strong> You can change your cookie preferences at any time by clearing your browser cookies and revisiting our site, which will trigger the consent banner again.</p>
+
+        <!-- Section 1 -->
+        <div class="accordion-item">
+            <div class="accordion-header">
+                <h2 class="accordion-title">1. What Are Cookies?</h2>
+                <span class="accordion-icon">+</span>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <p>Cookies are small text files that are placed on your computer, smartphone, or other device when you visit a website. They are widely used to make websites work more efficiently and provide information to website owners.</p>
+                    <div class="info-box">
+                        <p><strong>Important:</strong> Cookies do not contain personal information unless you have specifically provided it. They cannot access other files on your computer or device, and they cannot carry viruses or malware.</p>
+                    </div>
+                </div>
+            </div>
         </div>
-        
-        <h3>5.2 Browser Settings</h3>
-        <p>Most web browsers allow you to control cookies through their settings. Here's how to manage cookies in popular browsers:</p>
-        
-        <h4>Google Chrome</h4>
-        <ol>
-            <li>Click the three dots menu (⋮) in the top right</li>
-            <li>Go to <strong>Settings</strong> → <strong>Privacy and security</strong></li>
-            <li>Click <strong>Cookies and other site data</strong></li>
-            <li>Choose your preferred cookie settings</li>
-        </ol>
-        
-        <h4>Mozilla Firefox</h4>
-        <ol>
-            <li>Click the menu button (≡) and select <strong>Settings</strong></li>
-            <li>Select <strong>Privacy & Security</strong></li>
-            <li>Under <strong>Cookies and Site Data</strong>, choose your preferences</li>
-        </ol>
-        
-        <h4>Safari (Mac)</h4>
-        <ol>
-            <li>Go to <strong>Safari</strong> → <strong>Preferences</strong></li>
-            <li>Click the <strong>Privacy</strong> tab</li>
-            <li>Adjust cookie settings under <strong>Website tracking</strong></li>
-        </ol>
-        
-        <h4>Microsoft Edge</h4>
-        <ol>
-            <li>Click the three dots menu (⋯) and select <strong>Settings</strong></li>
-            <li>Go to <strong>Privacy, search, and services</strong></li>
-            <li>Under <strong>Cookies and site permissions</strong>, manage cookies</li>
-        </ol>
-        
-        <h3>5.3 Mobile Device Settings</h3>
-        
-        <h4>iOS (Safari)</h4>
-        <ol>
-            <li>Go to <strong>Settings</strong> → <strong>Safari</strong></li>
-            <li>Scroll to <strong>Privacy & Security</strong></li>
-            <li>Toggle <strong>Block All Cookies</strong> or adjust tracking settings</li>
-        </ol>
-        
-        <h4>Android (Chrome)</h4>
-        <ol>
-            <li>Open Chrome app</li>
-            <li>Tap the three dots menu (⋮) → <strong>Settings</strong></li>
-            <li>Tap <strong>Site settings</strong> → <strong>Cookies</strong></li>
-            <li>Choose your cookie preferences</li>
-        </ol>
-        
-        <h2>6. Impact of Disabling Cookies</h2>
-        <p>Blocking or deleting cookies may affect your experience on our website:</p>
-        
-        <div class="warning-box">
-            <h3>Potential Issues with Disabled Cookies:</h3>
-            <ul>
-                <li>You may need to re-enter information more frequently</li>
-                <li>Some website features may not function properly</li>
-                <li>Personalization features will be disabled</li>
-                <li>You may see the cookie consent banner repeatedly</li>
-                <li>Your preferences may not be saved between visits</li>
-                <li>Forms may not work correctly</li>
-            </ul>
+
+        <!-- Section 2 -->
+        <div class="accordion-item">
+            <div class="accordion-header">
+                <h2 class="accordion-title">2. How We Use Cookies</h2>
+                <span class="accordion-icon">+</span>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <p>TFAM Global uses cookies to:</p>
+                    <ul>
+                        <li>Remember your preferences and settings</li>
+                        <li>Understand how you use our website</li>
+                        <li>Improve your user experience</li>
+                        <li>Provide secure access to certain features</li>
+                        <li>Analyze website traffic and performance</li>
+                    </ul>
+                </div>
+            </div>
         </div>
-        
-        <p><strong>Essential cookies cannot be disabled</strong> as they are necessary for the website to function. However, you can choose to stop using our website if you do not want these cookies.</p>
-        
-        <h2>7. Local Storage and Similar Technologies</h2>
-        <p>In addition to cookies, we may use HTML5 local storage and similar technologies for:</p>
-        <ul>
-            <li>Storing newsletter popup preferences</li>
-            <li>Remembering user interface settings</li>
-            <li>Caching data for improved performance</li>
-        </ul>
-        
-        <p>Local storage data can be cleared through your browser settings, typically in the same location where you manage cookies.</p>
-        
-        <h2>8. Do Not Track Signals</h2>
-        <p>Some browsers have a "Do Not Track" (DNT) feature that signals to websites that you do not want your online activities tracked.</p>
-        
-        <p>Currently, there is no industry standard for how websites should respond to DNT signals. We do not currently respond to DNT browser signals, but we respect your privacy choices made through our cookie consent tool.</p>
-        
-        <h2>9. Children's Privacy</h2>
-        <p>Our website is not directed to children under 13 years of age. We do not knowingly use cookies to collect information from children. If you are under 13, please do not use our website or provide any information.</p>
-        
-        <h2>10. Updates to This Cookie Policy</h2>
-        <p>We may update this Cookie Policy from time to time to reflect changes in:</p>
-        <ul>
-            <li>Our cookie usage practices</li>
-            <li>New technologies we implement</li>
-            <li>Legal or regulatory requirements</li>
-            <li>Third-party services we use</li>
-        </ul>
-        
-        <p>When we make significant changes, we will:</p>
-        <ul>
-            <li>Update the "Last Updated" date at the top of this policy</li>
-            <li>Display a prominent notice on our website</li>
-            <li>Request your consent again if required by law</li>
-        </ul>
-        
-        <h2>11. More Information About Cookies</h2>
-        <p>To learn more about cookies and how they work, visit these resources:</p>
-        <ul>
-            <li><a href="https://www.allaboutcookies.org" target="_blank">All About Cookies</a> - Comprehensive cookie information</li>
-            <li><a href="https://www.youronlinechoices.com" target="_blank">Your Online Choices</a> - Cookie opt-out tool</li>
-            <li><a href="https://cookiepedia.co.uk" target="_blank">Cookiepedia</a> - Cookie encyclopedia</li>
-        </ul>
-        
-        <h2>12. Contact Us</h2>
-        <p>If you have questions or concerns about our use of cookies or this Cookie Policy, please contact us:</p>
-        
-        <div class="contact-info">
-            <p><strong>TFAM Global</strong></p>
-            <p><strong>Data Protection Officer</strong></p>
-            <p><strong>Email:</strong> <a href="mailto:privacy@tfamglobal.org">privacy@tfamglobal.org</a></p>
-            <p><strong>Subject Line:</strong> "Cookie Policy Inquiry"</p>
-            <p><strong>Website:</strong> <a href="https://tfamglobal.org">tfamglobal.org</a></p>
+
+        <!-- Section 3 -->
+        <div class="accordion-item">
+            <div class="accordion-header">
+                <h2 class="accordion-title">3. Types of Cookies We Use</h2>
+                <span class="accordion-icon">+</span>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <h3>3.1 Essential Cookies (Always Active)</h3>
+                    <p>These cookies are necessary for the website to function properly.</p>
+                    
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Cookie Name</th>
+                                <th>Purpose</th>
+                                <th>Duration</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>tfam_cookie_consent</code></td>
+                                <td>Stores your cookie consent preferences</td>
+                                <td>365 days</td>
+                            </tr>
+                            <tr>
+                                <td><code>session_id</code></td>
+                                <td>Maintains your session state</td>
+                                <td>Session</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h3>3.2 Performance Cookies (Optional)</h3>
+                    <p>These cookies help us understand how visitors interact with our website.</p>
+                    
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Cookie Name</th>
+                                <th>Purpose</th>
+                                <th>Duration</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>_ga</code></td>
+                                <td>Google Analytics - Distinguishes users</td>
+                                <td>2 years</td>
+                            </tr>
+                            <tr>
+                                <td><code>_gid</code></td>
+                                <td>Google Analytics - Distinguishes users</td>
+                                <td>24 hours</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h3>3.3 Functional Cookies (Optional)</h3>
+                    <p>These cookies enable enhanced functionality and personalization.</p>
+                    
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Cookie Name</th>
+                                <th>Purpose</th>
+                                <th>Duration</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>tfam_newsletter_shown</code></td>
+                                <td>Tracks newsletter popup display</td>
+                                <td>7 days</td>
+                            </tr>
+                            <tr>
+                                <td><code>language_preference</code></td>
+                                <td>Stores language preference</td>
+                                <td>365 days</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
-        
-        <p>We will respond to your inquiry within 30 days.</p>
-        
-        <hr style="margin: 3rem 0; border: none; border-top: 2px solid var(--off-white);">
-        
-        <div class="info-box">
-            <p><strong>Summary:</strong> We use cookies to improve your experience and understand how our website is used. You can control cookies through our consent tool or your browser settings. Essential cookies are necessary for the site to work, while optional cookies help us improve our services.</p>
+
+        <!-- Section 4 -->
+        <div class="accordion-item">
+            <div class="accordion-header">
+                <h2 class="accordion-title">4. Managing Cookies</h2>
+                <span class="accordion-icon">+</span>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <h3>Browser Settings</h3>
+                    <p>You can control cookies through your browser settings:</p>
+                    
+                    <h4>Google Chrome</h4>
+                    <ol>
+                        <li>Click the three dots menu (⋮)</li>
+                        <li>Go to Settings → Privacy and security</li>
+                        <li>Click Cookies and other site data</li>
+                        <li>Choose your cookie preferences</li>
+                    </ol>
+
+                    <h4>Mozilla Firefox</h4>
+                    <ol>
+                        <li>Click the menu button (≡)</li>
+                        <li>Select Settings → Privacy & Security</li>
+                        <li>Choose cookie preferences under Cookies and Site Data</li>
+                    </ol>
+
+                    <h4>Safari</h4>
+                    <ol>
+                        <li>Go to Safari → Preferences</li>
+                        <li>Click the Privacy tab</li>
+                        <li>Adjust settings under Website tracking</li>
+                    </ol>
+
+                    <div class="warning-box">
+                        <p><strong>Impact of Disabling Cookies:</strong> Some features may not work properly if you disable cookies. You may need to re-enter information and your preferences may not be saved.</p>
+                    </div>
+                </div>
+            </div>
         </div>
-        
-        <p style="text-align: center; margin-top: 3rem;">
-            <a href="index.html" class="back-link">Return to Homepage</a>
-        </p>
+
+        <!-- Section 5 -->
+        <div class="accordion-item">
+            <div class="accordion-header">
+                <h2 class="accordion-title">5. Third-Party Cookies</h2>
+                <span class="accordion-icon">+</span>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <p>We may use third-party services that set cookies:</p>
+                    <ul>
+                        <li><strong>Google Analytics:</strong> For website analytics (<a href="https://policies.google.com/privacy" target="_blank">Privacy Policy</a>)</li>
+                        <li><strong>Social Media:</strong> When embedding content from platforms like Instagram</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 6 -->
+        <div class="accordion-item">
+            <div class="accordion-header">
+                <h2 class="accordion-title">6. Contact Us</h2>
+                <span class="accordion-icon">+</span>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-body">
+                    <p>If you have questions about our use of cookies:</p>
+                    <p>
+                        <strong>Email:</strong> <a href="mailto:info.tfamglobal@gmail.com">info.tfamglobal@gmail.com</a><br>
+                        <strong>Website:</strong> <a href="https://tfamglobal.org">tfamglobal.org</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+
     </div>
+
+    <script>
+        const accordionHeaders = document.querySelectorAll('.accordion-header');
+        const expandAllBtn = document.getElementById('expandAll');
+        const collapseAllBtn = document.getElementById('collapseAll');
+
+        accordionHeaders.forEach(header => {
+            header.addEventListener('click', function() {
+                const content = this.nextElementSibling;
+                const isActive = this.classList.contains('active');
+                
+                this.classList.toggle('active');
+                content.classList.toggle('active');
+                
+                const icon = this.querySelector('.accordion-icon');
+                icon.textContent = isActive ? '+' : '−';
+            });
+        });
+
+        expandAllBtn.addEventListener('click', function() {
+            accordionHeaders.forEach(header => {
+                header.classList.add('active');
+                header.nextElementSibling.classList.add('active');
+                header.querySelector('.accordion-icon').textContent = '−';
+            });
+        });
+
+        collapseAllBtn.addEventListener('click', function() {
+            accordionHeaders.forEach(header => {
+                header.classList.remove('active');
+                header.nextElementSibling.classList.remove('active');
+                header.querySelector('.accordion-icon').textContent = '+';
+            });
+        });
+    </script>
 </body>
 </html>
