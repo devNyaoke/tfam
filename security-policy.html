@@ -70,17 +70,79 @@
             font-style: italic;
             margin-bottom: 3rem;
             padding: 1rem;
-            background: var(--off-white);
+            background: var(--pure-white);
             border-left: 4px solid var(--presbyter-blue);
         }
 
-        h2 {
-            color: var(--charcoal);
-            margin-top: 3rem;
+        .intro-text {
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        /* Accordion/Dropdown Styles */
+        .accordion {
             margin-bottom: 1rem;
-            font-size: 1.8rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid var(--off-white);
+            border: 1px solid var(--off-white);
+            border-radius: 8px;
+            overflow: hidden;
+            background: var(--charcoal);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            transition: box-shadow 0.3s;
+        }
+
+        .accordion:hover {
+            box-shadow: 0 4px 8px rgba(158, 6, 6, 0.1);
+        }
+
+        .accordion-header {
+            background: var(--charcoal);
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s;
+            user-select: none;
+        }
+
+        .accordion-header:hover {
+            background: var(--primary-red);
+        }
+
+        .accordion-header h2 {
+            color: var(--off-white);
+            font-size: 1.5rem;
+            margin: 0;
+            padding: 0;
+            border: none;
+            flex: 1;
+        }
+
+        .accordion-icon {
+            font-size: 1.5rem;
+            color: var(--off-white);
+            transition: transform 0.3s;
+            margin-left: 1rem;
+        }
+
+        .accordion.active .accordion-icon {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+        }
+
+        .accordion.active .accordion-content {
+            max-height: 5000px;
+            transition: max-height 0.6s ease-in;
+        }
+
+        .accordion-inner {
+            padding: 2rem;
+            background: var(--pure-white);
         }
 
         h3 {
@@ -88,6 +150,10 @@
             margin-top: 2rem;
             margin-bottom: 1rem;
             font-size: 1.3rem;
+        }
+
+        h3:first-child {
+            margin-top: 0;
         }
 
         p {
@@ -182,6 +248,24 @@
             margin-left: 0.5rem;
         }
 
+        .expand-all-btn {
+            display: inline-block;
+            background: var(--presbyter-blue);
+            color: var(--pure-white);
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-bottom: 2rem;
+        }
+
+        .expand-all-btn:hover {
+            background: var(--primary-red);
+        }
+
         @media (max-width: 640px) {
             .policy-container {
                 padding: 100px 1rem 40px;
@@ -191,8 +275,16 @@
                 font-size: 2rem;
             }
 
-            h2 {
-                font-size: 1.5rem;
+            .accordion-header h2 {
+                font-size: 1.2rem;
+            }
+
+            .accordion-header {
+                padding: 1rem;
+            }
+
+            .accordion-inner {
+                padding: 1rem;
             }
         }
     </style>
@@ -204,345 +296,533 @@
         <h1><span class="security-icon">🔒</span> Security Policy</h1>
         <p class="last-updated"><strong>Last Updated:</strong> January 23, 2026</p>
         
-        <h2>1. Our Commitment to Security</h2>
-        <p>At TFAM Global, we take the security of your personal information and our systems seriously. We implement comprehensive technical, organizational, and physical security measures to protect your data from unauthorized access, alteration, disclosure, or destruction.</p>
-        
-        <p>This Security Policy outlines our approach to protecting your information and maintaining the integrity, confidentiality, and availability of our systems and services.</p>
-        
-        <h2>2. Technical Security Measures</h2>
-        
-        <h3>2.1 Data Encryption <span class="badge">Active</span></h3>
-        <p>We protect data both in transit and at rest using industry-standard encryption:</p>
-        
-        <ul>
-            <li><strong>HTTPS/TLS Encryption:</strong> All data transmitted between your browser and our servers is encrypted using TLS 1.2 or higher (SSL/TLS certificates)</li>
-            <li><strong>Data-at-Rest Encryption:</strong> Sensitive data stored on our servers is encrypted using AES-256 encryption standards</li>
-            <li><strong>Database Encryption:</strong> Database connections use encrypted protocols</li>
-            <li><strong>Payment Data:</strong> Credit card and payment information is encrypted and processed through PCI-DSS compliant payment gateways</li>
-        </ul>
-        
-        <h3>2.2 Server and Infrastructure Security</h3>
-        <p>Our server infrastructure includes multiple layers of protection:</p>
-        
-        <ul>
-            <li><strong>Secure Data Centers:</strong> Servers hosted in certified data centers with 24/7 physical security and monitoring</li>
-            <li><strong>Firewall Protection:</strong> Multi-layer firewall configuration to block unauthorized access</li>
-            <li><strong>Intrusion Detection:</strong> Real-time monitoring systems to detect and prevent security threats</li>
-            <li><strong>DDoS Protection:</strong> Advanced protection against distributed denial-of-service attacks</li>
-            <li><strong>Regular Updates:</strong> Security patches and updates applied promptly to all systems</li>
-            <li><strong>Automated Backups:</strong> Daily encrypted backups stored in geographically separate locations</li>
-        </ul>
-        
-        <h3>2.3 Application Security</h3>
-        <p>Our website and applications incorporate security best practices:</p>
-        
-        <ul>
-            <li><strong>Input Validation:</strong> All user input is validated and sanitized to prevent injection attacks</li>
-            <li><strong>XSS Prevention:</strong> Content Security Policy (CSP) headers prevent cross-site scripting attacks</li>
-            <li><strong>CSRF Protection:</strong> Cross-Site Request Forgery tokens protect against unauthorized actions</li>
-            <li><strong>SQL Injection Protection:</strong> Parameterized queries and prepared statements prevent SQL injection</li>
-            <li><strong>Rate Limiting:</strong> API and form submission rate limits prevent abuse and brute-force attacks</li>
-            <li><strong>Session Management:</strong> Secure session handling with automatic timeout and token rotation</li>
-        </ul>
-        
-        <h3>2.4 Security Headers</h3>
-        <p>Our website implements critical HTTP security headers:</p>
-        
-        <ul>
-            <li><code>Content-Security-Policy</code> - Prevents XSS and data injection attacks</li>
-            <li><code>X-Frame-Options: SAMEORIGIN</code> - Prevents clickjacking attacks</li>
-            <li><code>X-Content-Type-Options: nosniff</code> - Prevents MIME type sniffing</li>
-            <li><code>Strict-Transport-Security</code> - Enforces HTTPS connections only</li>
-            <li><code>Referrer-Policy</code> - Controls referrer information disclosure</li>
-            <li><code>Permissions-Policy</code> - Restricts browser feature access</li>
-        </ul>
-        
-        <h2>3. Access Control and Authentication</h2>
-        
-        <h3>3.1 User Authentication</h3>
-        <ul>
-            <li><strong>Strong Passwords:</strong> Password requirements enforce minimum length and complexity</li>
-            <li><strong>Password Hashing:</strong> Passwords stored using bcrypt with salt (never stored in plain text)</li>
-            <li><strong>Multi-Factor Authentication (MFA):</strong> Available for administrative and sensitive accounts</li>
-            <li><strong>Account Lockout:</strong> Automatic lockout after multiple failed login attempts</li>
-            <li><strong>Session Expiration:</strong> Automatic logout after periods of inactivity</li>
-        </ul>
-        
-        <h3>3.2 Administrative Access</h3>
-        <ul>
-            <li><strong>Least Privilege Principle:</strong> Users granted minimum necessary access rights</li>
-            <li><strong>Role-Based Access Control (RBAC):</strong> Permissions assigned based on job function</li>
-            <li><strong>Audit Logging:</strong> All administrative actions logged and monitored</li>
-            <li><strong>Segregation of Duties:</strong> Critical operations require multiple approvals</li>
-            <li><strong>Regular Access Reviews:</strong> Periodic review and removal of unnecessary access</li>
-        </ul>
-        
-        <h2>4. Data Protection Measures</h2>
-        
-        <h3>4.1 Data Minimization</h3>
-        <p>We follow the principle of data minimization:</p>
-        <ul>
-            <li>Collect only necessary information for stated purposes</li>
-            <li>Retain data only as long as required</li>
-            <li>Securely delete data when no longer needed</li>
-            <li>Anonymize or pseudonymize data where possible</li>
-        </ul>
-        
-        <h3>4.2 Backup and Disaster Recovery</h3>
-        <ul>
-            <li><strong>Automated Backups:</strong> Daily encrypted backups of all critical data</li>
-            <li><strong>Geographic Redundancy:</strong> Backups stored in multiple geographic locations</li>
-            <li><strong>Recovery Testing:</strong> Regular testing of backup restoration procedures</li>
-            <li><strong>Recovery Time Objective (RTO):</strong> Target recovery within 24 hours</li>
-            <li><strong>Recovery Point Objective (RPO):</strong> Maximum data loss of 24 hours</li>
-            <li><strong>Disaster Recovery Plan:</strong> Documented procedures for various disaster scenarios</li>
-        </ul>
-        
-        <h3>4.3 Data Breach Response Plan</h3>
-        <p>In the event of a data breach, we will:</p>
-        
-        <div class="alert-box">
-            <strong>⚠️ Our Breach Response Commitment:</strong>
-            <ol style="margin-top: 1rem;">
-                <li><strong>Immediate Containment:</strong> Isolate affected systems within 1 hour of detection</li>
-                <li><strong>Investigation:</strong> Conduct thorough forensic investigation to determine scope</li>
-                <li><strong>Notification:</strong> Notify affected individuals within 72 hours as required by law</li>
-                <li><strong>Authority Reporting:</strong> Report to relevant data protection authorities as required</li>
-                <li><strong>Remediation:</strong> Implement measures to prevent future occurrences</li>
-                <li><strong>Documentation:</strong> Maintain detailed incident reports and lessons learned</li>
-            </ol>
+        <div class="intro-text">
+            <p>At TFAM Global, we take the security of your personal information and our systems seriously. We implement comprehensive technical, organizational, and physical security measures to protect your data from unauthorized access, alteration, disclosure, or destruction.</p>
+            <p>Click on any section below to expand and view detailed information.</p>
         </div>
-        
-        <h2>5. Organizational Security</h2>
-        
-        <h3>5.1 Employee Training and Awareness</h3>
-        <ul>
-            <li><strong>Security Onboarding:</strong> All new employees receive security training</li>
-            <li><strong>Annual Training:</strong> Mandatory annual security awareness training for all staff</li>
-            <li><strong>Phishing Simulations:</strong> Regular phishing awareness exercises</li>
-            <li><strong>Incident Response Training:</strong> Staff trained on recognizing and reporting security incidents</li>
-            <li><strong>Confidentiality Agreements:</strong> All personnel sign confidentiality and acceptable use agreements</li>
-        </ul>
-        
-        <h3>5.2 Vendor and Third-Party Security</h3>
-        <ul>
-            <li><strong>Due Diligence:</strong> Security assessments before engaging third-party vendors</li>
-            <li><strong>Contractual Obligations:</strong> Vendors required to maintain equivalent security standards</li>
-            <li><strong>Data Processing Agreements:</strong> Formal agreements governing data handling</li>
-            <li><strong>Regular Audits:</strong> Periodic review of vendor security practices</li>
-            <li><strong>Limited Data Sharing:</strong> Share only minimum necessary information with third parties</li>
-        </ul>
-        
-        <h2>6. Payment Security</h2>
-        
-        <h3>6.1 PCI-DSS Compliance <span class="badge">Certified</span></h3>
-        <p>Our payment processing adheres to Payment Card Industry Data Security Standard (PCI-DSS):</p>
-        
-        <ul>
-            <li><strong>Secure Payment Gateway:</strong> All transactions processed through PCI-DSS Level 1 certified providers</li>
-            <li><strong>No Card Storage:</strong> We do not store complete credit card numbers on our servers</li>
-            <li><strong>Tokenization:</strong> Payment information tokenized for recurring transactions</li>
-            <li><strong>3D Secure:</strong> Additional authentication layer for online card payments</li>
-            <li><strong>Fraud Detection:</strong> Real-time fraud monitoring and prevention systems</li>
-            <li><strong>Encrypted Transmission:</strong> All payment data transmitted over encrypted connections</li>
-        </ul>
-        
-        <h2>7. Monitoring and Logging</h2>
-        
-        <h3>7.1 Security Monitoring</h3>
-        <ul>
-            <li><strong>24/7 Monitoring:</strong> Continuous monitoring of systems and networks</li>
-            <li><strong>Automated Alerts:</strong> Real-time alerts for suspicious activities</li>
-            <li><strong>Log Management:</strong> Centralized collection and analysis of security logs</li>
-            <li><strong>Anomaly Detection:</strong> Machine learning-based detection of unusual patterns</li>
-            <li><strong>Regular Reviews:</strong> Periodic manual review of security logs</li>
-        </ul>
-        
-        <h3>7.2 Audit Trails</h3>
-        <p>We maintain comprehensive audit logs of:</p>
-        <ul>
-            <li>User authentication and access attempts</li>
-            <li>Data access and modifications</li>
-            <li>Administrative actions and configuration changes</li>
-            <li>System events and errors</li>
-            <li>Security incidents and responses</li>
-        </ul>
-        
-        <h2>8. Vulnerability Management</h2>
-        
-        <h3>8.1 Proactive Security Testing</h3>
-        <ul>
-            <li><strong>Vulnerability Scanning:</strong> Weekly automated vulnerability scans</li>
-            <li><strong>Penetration Testing:</strong> Annual third-party penetration testing</li>
-            <li><strong>Code Reviews:</strong> Security-focused code reviews for all changes</li>
-            <li><strong>Dependency Scanning:</strong> Automated scanning of third-party libraries for vulnerabilities</li>
-        </ul>
-        
-        <h3>8.2 Patch Management</h3>
-        <ul>
-            <li><strong>Critical Patches:</strong> Applied within 24 hours of release</li>
-            <li><strong>Regular Updates:</strong> Monthly patch cycles for non-critical updates</li>
-            <li><strong>Testing:</strong> Patches tested in staging environment before production deployment</li>
-            <li><strong>Rollback Plan:</strong> Documented rollback procedures for failed patches</li>
-        </ul>
-        
-        <h2>9. Compliance and Certifications</h2>
-        
-        <p>TFAM Global maintains compliance with industry standards and regulations:</p>
-        
-        <h3>9.1 Current Compliance</h3>
-        <ul>
-            <li><strong>GDPR</strong> - General Data Protection Regulation (EU)</li>
-            <li><strong>CCPA</strong> - California Consumer Privacy Act (USA)</li>
-            <li><strong>PCI-DSS</strong> - Payment Card Industry Data Security Standard</li>
-            <li><strong>SOC 2 Type II</strong> - Service Organization Control (In Progress)</li>
-        </ul>
-        
-        <h3>9.2 Standards We Follow</h3>
-        <ul>
-            <li><strong>ISO 27001</strong> - Information Security Management System (certification in progress)</li>
-            <li><strong>NIST Cybersecurity Framework</strong> - U.S. National Institute of Standards and Technology</li>
-            <li><strong>OWASP Top 10</strong> - Web Application Security Risks</li>
-        </ul>
-        
-        <h2>10. Responsible Disclosure Program</h2>
-        
-        <div class="alert-box">
-            <strong>🔍 Found a Security Vulnerability?</strong>
-            <p style="margin-top: 1rem;">We welcome and encourage responsible disclosure of security vulnerabilities. If you discover a security issue, please follow our responsible disclosure guidelines:</p>
+
+        <button class="expand-all-btn" onclick="toggleAll()">Expand All Sections</button>
+
+        <!-- Section 1 -->
+        <div class="accordion">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <h2>1. Our Commitment to Security</h2>
+                <span class="accordion-icon">+</span>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-inner">
+                    <p>At TFAM Global, we take the security of your personal information and our systems seriously. We implement comprehensive technical, organizational, and physical security measures to protect your data from unauthorized access, alteration, disclosure, or destruction.</p>
+                    
+                    <p>This Security Policy outlines our approach to protecting your information and maintaining the integrity, confidentiality, and availability of our systems and services.</p>
+                </div>
+            </div>
         </div>
-        
-        <h3>10.1 How to Report</h3>
-        <ul>
-            <li><strong>Email:</strong> <a href="mailto:security@tfamglobal.org">security@tfamglobal.org</a></li>
-            <li><strong>Subject Line:</strong> "Security Vulnerability Report"</li>
-            <li><strong>Encryption:</strong> PGP key available upon request for sensitive reports</li>
-        </ul>
-        
-        <h3>10.2 What to Include</h3>
-        <ul>
-            <li>Detailed description of the vulnerability</li>
-            <li>Steps to reproduce the issue</li>
-            <li>Potential impact and severity assessment</li>
-            <li>Any proof-of-concept code (if applicable)</li>
-            <li>Your contact information for follow-up</li>
-        </ul>
-        
-        <h3>10.3 Our Commitment</h3>
-        <ul>
-            <li><strong>Acknowledgment:</strong> We will acknowledge your report within 48 hours</li>
-            <li><strong>Investigation:</strong> We will investigate and validate the report</li>
-            <li><strong>Updates:</strong> Regular updates on our progress toward resolution</li>
-            <li><strong>Credit:</strong> Public acknowledgment of your contribution (if desired)</li>
-            <li><strong>No Legal Action:</strong> We will not pursue legal action against good-faith security researchers</li>
-        </ul>
-        
-        <h3>10.4 Guidelines for Researchers</h3>
-        <ul>
-            <li>Do not access, modify, or delete user data</li>
-            <li>Do not perform destructive testing (DoS, DDoS)</li>
-            <li>Do not publicly disclose the vulnerability until we've addressed it</li>
-            <li>Do not exploit the vulnerability for personal gain</li>
-            <li>Comply with all applicable laws and regulations</li>
-        </ul>
-        
-        <h2>11. User Security Responsibilities</h2>
-        
-        <p>We ask users to help us maintain security by:</p>
-        
-        <h3>11.1 Best Practices</h3>
-        <ul>
-            <li><strong>Strong Passwords:</strong> Use unique, complex passwords (minimum 12 characters)</li>
-            <li><strong>Password Managers:</strong> Consider using a reputable password manager</li>
-            <li><strong>Enable MFA:</strong> Enable two-factor authentication when available</li>
-            <li><strong>Logout:</strong> Always logout when using shared or public devices</li>
-            <li><strong>Secure Connections:</strong> Avoid accessing sensitive data on public Wi-Fi</li>
-            <li><strong>Software Updates:</strong> Keep your browser and operating system updated</li>
-        </ul>
-        
-        <h3>11.2 Recognizing Security Threats</h3>
-        <p>Be cautious of:</p>
-        <ul>
-            <li>Emails requesting your password or sensitive information</li>
-            <li>Suspicious links or attachments from unknown sources</li>
-            <li>Urgent messages claiming to be from TFAM Global</li>
-            <li>Requests to bypass security measures</li>
-        </ul>
-        
-        <div class="info-box">
-            <strong>Remember:</strong> TFAM Global will NEVER ask for your password via email, phone, or text message. We will never request that you disable security features.
+
+        <!-- Section 2 -->
+        <div class="accordion">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <h2>2. Technical Security Measures</h2>
+                <span class="accordion-icon">+</span>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-inner">
+                    <h3>2.1 Data Encryption <span class="badge">Active</span></h3>
+                    <p>We protect data both in transit and at rest using industry-standard encryption:</p>
+                    
+                    <ul>
+                        <li><strong>HTTPS/TLS Encryption:</strong> All data transmitted between your browser and our servers is encrypted using TLS 1.2 or higher (SSL/TLS certificates)</li>
+                        <li><strong>Data-at-Rest Encryption:</strong> Sensitive data stored on our servers is encrypted using AES-256 encryption standards</li>
+                        <li><strong>Database Encryption:</strong> Database connections use encrypted protocols</li>
+                        <li><strong>Payment Data:</strong> Credit card and payment information is encrypted and processed through PCI-DSS compliant payment gateways</li>
+                    </ul>
+                    
+                    <h3>2.2 Server and Infrastructure Security</h3>
+                    <p>Our server infrastructure includes multiple layers of protection:</p>
+                    
+                    <ul>
+                        <li><strong>Secure Data Centers:</strong> Servers hosted in certified data centers with 24/7 physical security and monitoring</li>
+                        <li><strong>Firewall Protection:</strong> Multi-layer firewall configuration to block unauthorized access</li>
+                        <li><strong>Intrusion Detection:</strong> Real-time monitoring systems to detect and prevent security threats</li>
+                        <li><strong>DDoS Protection:</strong> Advanced protection against distributed denial-of-service attacks</li>
+                        <li><strong>Regular Updates:</strong> Security patches and updates applied promptly to all systems</li>
+                        <li><strong>Automated Backups:</strong> Daily encrypted backups stored in geographically separate locations</li>
+                    </ul>
+                    
+                    <h3>2.3 Application Security</h3>
+                    <p>Our website and applications incorporate security best practices:</p>
+                    
+                    <ul>
+                        <li><strong>Input Validation:</strong> All user input is validated and sanitized to prevent injection attacks</li>
+                        <li><strong>XSS Prevention:</strong> Content Security Policy (CSP) headers prevent cross-site scripting attacks</li>
+                        <li><strong>CSRF Protection:</strong> Cross-Site Request Forgery tokens protect against unauthorized actions</li>
+                        <li><strong>SQL Injection Protection:</strong> Parameterized queries and prepared statements prevent SQL injection</li>
+                        <li><strong>Rate Limiting:</strong> API and form submission rate limits prevent abuse and brute-force attacks</li>
+                        <li><strong>Session Management:</strong> Secure session handling with automatic timeout and token rotation</li>
+                    </ul>
+                    
+                    <h3>2.4 Security Headers</h3>
+                    <p>Our website implements critical HTTP security headers:</p>
+                    
+                    <ul>
+                        <li><code>Content-Security-Policy</code> - Prevents XSS and data injection attacks</li>
+                        <li><code>X-Frame-Options: SAMEORIGIN</code> - Prevents clickjacking attacks</li>
+                        <li><code>X-Content-Type-Options: nosniff</code> - Prevents MIME type sniffing</li>
+                        <li><code>Strict-Transport-Security</code> - Enforces HTTPS connections only</li>
+                        <li><code>Referrer-Policy</code> - Controls referrer information disclosure</li>
+                        <li><code>Permissions-Policy</code> - Restricts browser feature access</li>
+                    </ul>
+                </div>
+            </div>
         </div>
-        
-        <h2>12. Security Incident Reporting</h2>
-        
-        <p>If you suspect a security incident involving your account or our systems:</p>
-        
-        <h3>12.1 Immediate Actions</h3>
-        <ol>
-            <li>Change your password immediately</li>
-            <li>Enable two-factor authentication if not already active</li>
-            <li>Review recent account activity</li>
-            <li>Contact us immediately</li>
-        </ol>
-        
-        <h3>12.2 How to Contact Us</h3>
-        <div class="contact-info">
-            <p><strong>Security Team</strong></p>
-            <p><strong>Emergency Email:</strong> <a href="mailto:security@tfamglobal.org">security@tfamglobal.org</a></p>
-            <p><strong>Response Time:</strong> Within 2 hours during business hours</p>
-            <p><strong>24/7 Emergency:</strong> Critical security issues handled immediately</p>
+
+        <!-- Section 3 -->
+        <div class="accordion">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <h2>3. Access Control and Authentication</h2>
+                <span class="accordion-icon">+</span>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-inner">
+                    <h3>3.1 User Authentication</h3>
+                    <ul>
+                        <li><strong>Strong Passwords:</strong> Password requirements enforce minimum length and complexity</li>
+                        <li><strong>Password Hashing:</strong> Passwords stored using bcrypt with salt (never stored in plain text)</li>
+                        <li><strong>Multi-Factor Authentication (MFA):</strong> Available for administrative and sensitive accounts</li>
+                        <li><strong>Account Lockout:</strong> Automatic lockout after multiple failed login attempts</li>
+                        <li><strong>Session Expiration:</strong> Automatic logout after periods of inactivity</li>
+                    </ul>
+                    
+                    <h3>3.2 Administrative Access</h3>
+                    <ul>
+                        <li><strong>Least Privilege Principle:</strong> Users granted minimum necessary access rights</li>
+                        <li><strong>Role-Based Access Control (RBAC):</strong> Permissions assigned based on job function</li>
+                        <li><strong>Audit Logging:</strong> All administrative actions logged and monitored</li>
+                        <li><strong>Segregation of Duties:</strong> Critical operations require multiple approvals</li>
+                        <li><strong>Regular Access Reviews:</strong> Periodic review and removal of unnecessary access</li>
+                    </ul>
+                </div>
+            </div>
         </div>
-        
-        <h2>13. Regular Security Reviews</h2>
-        
-        <p>We continuously improve our security posture through:</p>
-        
-        <ul>
-            <li><strong>Quarterly Security Audits:</strong> Internal security reviews and assessments</li>
-            <li><strong>Annual External Audits:</strong> Third-party security audits and certifications</li>
-            <li><strong>Threat Intelligence:</strong> Monitoring of emerging threats and vulnerabilities</li>
-            <li><strong>Security Committee:</strong> Regular meetings to review security policies and incidents</li>
-            <li><strong>Continuous Improvement:</strong> Implementation of lessons learned from incidents and audits</li>
-        </ul>
-        
-        <h2>14. Updates to This Security Policy</h2>
-        
-        <p>This Security Policy may be updated to reflect:</p>
-        <ul>
-            <li>Changes in our security practices and technologies</li>
-            <li>New regulatory requirements</li>
-            <li>Emerging security threats and best practices</li>
-            <li>Feedback from security audits and assessments</li>
-        </ul>
-        
-        <p>Significant changes will be communicated via:</p>
-        <ul>
-            <li>Email notification to registered users</li>
-            <li>Prominent notice on our website</li>
-            <li>Update to the "Last Updated" date at the top of this policy</li>
-        </ul>
-        
-        <h2>15. Contact Information</h2>
-        
-        <p>For security-related questions, concerns, or reports:</p>
-        
-        <div class="contact-info">
-            <p><strong>TFAM Global Security Team</strong></p>
-            <p><strong>General Inquiries:</strong> <a href="mailto:security@tfamglobal.org">security@tfamglobal.org</a></p>
-            <p><strong>Vulnerability Reports:</strong> <a href="mailto:security@tfamglobal.org">security@tfamglobal.org</a></p>
-            <p><strong>Privacy Concerns:</strong> <a href="mailto:privacy@tfamglobal.org">privacy@tfamglobal.org</a></p>
-            <p><strong>Website:</strong> <a href="https://tfamglobal.org">tfamglobal.org</a></p>
+
+        <!-- Section 4 -->
+        <div class="accordion">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <h2>4. Data Protection Measures</h2>
+                <span class="accordion-icon">+</span>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-inner">
+                    <h3>4.1 Data Minimization</h3>
+                    <p>We follow the principle of data minimization:</p>
+                    <ul>
+                        <li>Collect only necessary information for stated purposes</li>
+                        <li>Retain data only as long as required</li>
+                        <li>Securely delete data when no longer needed</li>
+                        <li>Anonymize or pseudonymize data where possible</li>
+                    </ul>
+                    
+                    <h3>4.2 Backup and Disaster Recovery</h3>
+                    <ul>
+                        <li><strong>Automated Backups:</strong> Daily encrypted backups of all critical data</li>
+                        <li><strong>Geographic Redundancy:</strong> Backups stored in multiple geographic locations</li>
+                        <li><strong>Recovery Testing:</strong> Regular testing of backup restoration procedures</li>
+                        <li><strong>Recovery Time Objective (RTO):</strong> Target recovery within 24 hours</li>
+                        <li><strong>Recovery Point Objective (RPO):</strong> Maximum data loss of 24 hours</li>
+                        <li><strong>Disaster Recovery Plan:</strong> Documented procedures for various disaster scenarios</li>
+                    </ul>
+                    
+                    <h3>4.3 Data Breach Response Plan</h3>
+                    <p>In the event of a data breach, we will:</p>
+                    
+                    <div class="alert-box">
+                        <strong>⚠️ Our Breach Response Commitment:</strong>
+                        <ol style="margin-top: 1rem;">
+                            <li><strong>Immediate Containment:</strong> Isolate affected systems within 1 hour of detection</li>
+                            <li><strong>Investigation:</strong> Conduct thorough forensic investigation to determine scope</li>
+                            <li><strong>Notification:</strong> Notify affected individuals within 72 hours as required by law</li>
+                            <li><strong>Authority Reporting:</strong> Report to relevant data protection authorities as required</li>
+                            <li><strong>Remediation:</strong> Implement measures to prevent future occurrences</li>
+                            <li><strong>Documentation:</strong> Maintain detailed incident reports and lessons learned</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
         </div>
-        
-        <hr style="margin: 3rem 0; border: none; border-top: 2px solid var(--off-white);">
-        
-        <div class="info-box">
-            <p><strong>Our Security Commitment:</strong> We continuously evaluate and improve our security measures to protect your information and maintain your trust. Security is not a one-time effort but an ongoing commitment that we take seriously at every level of our organization.</p>
+
+        <!-- Section 5 -->
+        <div class="accordion">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <h2>5. Organizational Security</h2>
+                <span class="accordion-icon">+</span>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-inner">
+                    <h3>5.1 Employee Training and Awareness</h3>
+                    <ul>
+                        <li><strong>Security Onboarding:</strong> All new employees receive security training</li>
+                        <li><strong>Annual Training:</strong> Mandatory annual security awareness training for all staff</li>
+                        <li><strong>Phishing Simulations:</strong> Regular phishing awareness exercises</li>
+                        <li><strong>Incident Response Training:</strong> Staff trained on recognizing and reporting security incidents</li>
+                        <li><strong>Confidentiality Agreements:</strong> All personnel sign confidentiality and acceptable use agreements</li>
+                    </ul>
+                    
+                    <h3>5.2 Vendor and Third-Party Security</h3>
+                    <ul>
+                        <li><strong>Due Diligence:</strong> Security assessments before engaging third-party vendors</li>
+                        <li><strong>Contractual Obligations:</strong> Vendors required to maintain equivalent security standards</li>
+                        <li><strong>Data Processing Agreements:</strong> Formal agreements governing data handling</li>
+                        <li><strong>Regular Audits:</strong> Periodic review of vendor security practices</li>
+                        <li><strong>Limited Data Sharing:</strong> Share only minimum necessary information with third parties</li>
+                    </ul>
+                </div>
+            </div>
         </div>
-        
+
+        <!-- Section 6 -->
+        <div class="accordion">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <h2>6. Payment Security</h2>
+                <span class="accordion-icon">+</span>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-inner">
+                    <h3>6.1 PCI-DSS Compliance <span class="badge">Certified</span></h3>
+                    <p>Our payment processing adheres to Payment Card Industry Data Security Standard (PCI-DSS):</p>
+                    
+                    <ul>
+                        <li><strong>Secure Payment Gateway:</strong> All transactions processed through PCI-DSS Level 1 certified providers</li>
+                        <li><strong>No Card Storage:</strong> We do not store complete credit card numbers on our servers</li>
+                        <li><strong>Tokenization:</strong> Payment information tokenized for recurring transactions</li>
+                        <li><strong>3D Secure:</strong> Additional authentication layer for online card payments</li>
+                        <li><strong>Fraud Detection:</strong> Real-time fraud monitoring and prevention systems</li>
+                        <li><strong>Encrypted Transmission:</strong> All payment data transmitted over encrypted connections</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 7 -->
+        <div class="accordion">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <h2>7. Monitoring and Logging</h2>
+                <span class="accordion-icon">+</span>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-inner">
+                    <h3>7.1 Security Monitoring</h3>
+                    <ul>
+                        <li><strong>24/7 Monitoring:</strong> Continuous monitoring of systems and networks</li>
+                        <li><strong>Automated Alerts:</strong> Real-time alerts for suspicious activities</li>
+                        <li><strong>Log Management:</strong> Centralized collection and analysis of security logs</li>
+                        <li><strong>Anomaly Detection:</strong> Machine learning-based detection of unusual patterns</li>
+                        <li><strong>Regular Reviews:</strong> Periodic manual review of security logs</li>
+                    </ul>
+                    
+                    <h3>7.2 Audit Trails</h3>
+                    <p>We maintain comprehensive audit logs of:</p>
+                    <ul>
+                        <li>User authentication and access attempts</li>
+                        <li>Data access and modifications</li>
+                        <li>Administrative actions and configuration changes</li>
+                        <li>System events and errors</li>
+                        <li>Security incidents and responses</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 8 -->
+        <div class="accordion">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <h2>8. Vulnerability Management</h2>
+                <span class="accordion-icon">+</span>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-inner">
+                    <h3>8.1 Proactive Security Testing</h3>
+                    <ul>
+                        <li><strong>Vulnerability Scanning:</strong> Weekly automated vulnerability scans</li>
+                        <li><strong>Penetration Testing:</strong> Annual third-party penetration testing</li>
+                        <li><strong>Code Reviews:</strong> Security-focused code reviews for all changes</li>
+                        <li><strong>Dependency Scanning:</strong> Automated scanning of third-party libraries for vulnerabilities</li>
+                    </ul>
+                    
+                    <h3>8.2 Patch Management</h3>
+                    <ul>
+                        <li><strong>Critical Patches:</strong> Applied within 24 hours of release</li>
+                        <li><strong>Regular Updates:</strong> Monthly patch cycles for non-critical updates</li>
+                        <li><strong>Testing:</strong> Patches tested in staging environment before production deployment</li>
+                        <li><strong>Rollback Plan:</strong> Documented rollback procedures for failed patches</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 9 -->
+        <div class="accordion">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <h2>9. Compliance and Certifications</h2>
+                <span class="accordion-icon">+</span>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-inner">
+                    <p>TFAM Global maintains compliance with industry standards and regulations:</p>
+                    
+                    <h3>9.1 Current Compliance</h3>
+                    <ul>
+                        <li><strong>GDPR</strong> - General Data Protection Regulation (EU)</li>
+                        <li><strong>CCPA</strong> - California Consumer Privacy Act (USA)</li>
+                        <li><strong>PCI-DSS</strong> - Payment Card Industry Data Security Standard</li>
+                        <li><strong>SOC 2 Type II</strong> - Service Organization Control (In Progress)</li>
+                    </ul>
+                    
+                    <h3>9.2 Standards We Follow</h3>
+                    <ul>
+                        <li><strong>ISO 27001</strong> - Information Security Management System (certification in progress)</li>
+                        <li><strong>NIST Cybersecurity Framework</strong> - U.S. National Institute of Standards and Technology</li>
+                        <li><strong>OWASP Top 10</strong> - Web Application Security Risks</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 10 -->
+        <div class="accordion">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <h2>10. Responsible Disclosure Program</h2>
+                <span class="accordion-icon">+</span>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-inner">
+                    <div class="alert-box">
+                        <strong>🔍 Found a Security Vulnerability?</strong>
+                        <p style="margin-top: 1rem;">We welcome and encourage responsible disclosure of security vulnerabilities. If you discover a security issue, please follow our responsible disclosure guidelines:</p>
+                    </div>
+                    
+                    <h3>10.1 How to Report</h3>
+                    <ul>
+                        <li><strong>Email:</strong> <a href="mailto:info.tfamglobal@gmail.com">info.tfamglobal@gmail.com</a></li>
+                        <li><strong>Subject Line:</strong> "Security Vulnerability Report"</li>
+                        <li><strong>Encryption:</strong> PGP key available upon request for sensitive reports</li>
+                    </ul>
+                    
+                    <h3>10.2 What to Include</h3>
+                    <ul>
+                        <li>Detailed description of the vulnerability</li>
+                        <li>Steps to reproduce the issue</li>
+                        <li>Potential impact and severity assessment</li>
+                        <li>Any proof-of-concept code (if applicable)</li>
+                        <li>Your contact information for follow-up</li>
+                    </ul>
+                    
+                    <h3>10.3 Our Commitment</h3>
+                    <ul>
+                        <li><strong>Acknowledgment:</strong> We will acknowledge your report within 48 hours</li>
+                        <li><strong>Investigation:</strong> We will investigate and validate the report</li>
+                        <li><strong>Updates:</strong> Regular updates on our progress toward resolution</li>
+                        <li><strong>Credit:</strong> Public acknowledgment of your contribution (if desired)</li>
+                        <li><strong>No Legal Action:</strong> We will not pursue legal action against good-faith security researchers</li>
+                    </ul>
+                    
+                    <h3>10.4 Guidelines for Researchers</h3>
+                    <ul>
+                        <li>Do not access, modify, or delete user data</li>
+                        <li>Do not perform destructive testing (DoS, DDoS)</li>
+                        <li>Do not publicly disclose the vulnerability until we've addressed it</li>
+                        <li>Do not exploit the vulnerability for personal gain</li>
+                        <li>Comply with all applicable laws and regulations</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 11 -->
+        <div class="accordion">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <h2>11. User Security Responsibilities</h2>
+                <span class="accordion-icon">+</span>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-inner">
+                    <p>We ask users to help us maintain security by:</p>
+                    
+                    <h3>11.1 Best Practices</h3>
+                    <ul>
+                        <li><strong>Strong Passwords:</strong> Use unique, complex passwords (minimum 12 characters)</li>
+                        <li><strong>Password Managers:</strong> Consider using a reputable password manager</li>
+                        <li><strong>Enable MFA:</strong> Enable two-factor authentication when available</li>
+                        <li><strong>Logout:</strong> Always logout when using shared or public devices</li>
+                        <li><strong>Secure Connections:</strong> Avoid accessing sensitive data on public Wi-Fi</li>
+                        <li><strong>Software Updates:</strong> Keep your browser and operating system updated</li>
+                    </ul>
+                    
+                    <h3>11.2 Recognizing Security Threats</h3>
+                    <p>Be cautious of:</p>
+                    <ul>
+                        <li>Emails requesting your password or sensitive information</li>
+                        <li>Suspicious links or attachments from unknown sources</li>
+                        <li>Urgent messages claiming to be from TFAM Global</li>
+                        <li>Requests to bypass security measures</li>
+                    </ul>
+                    
+                    <div class="info-box">
+                        <strong>Remember:</strong> TFAM Global will NEVER ask for your password via email, phone, or text message. We will never request that you disable security features.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 12 -->
+        <div class="accordion">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <h2>12. Security Incident Reporting</h2>
+                <span class="accordion-icon">+</span>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-inner">
+                    <p>If you suspect a security incident involving your account or our systems:</p>
+                    
+                    <h3>12.1 Immediate Actions</h3>
+                    <ol>
+                        <li>Change your password immediately</li>
+                        <li>Enable two-factor authentication if not already active</li>
+                        <li>Review recent account activity</li>
+                        <li>Contact us immediately</li>
+                    </ol>
+                    
+                    <h3>12.2 How to Contact Us</h3>
+                    <div class="contact-info">
+                        <p><strong>Security Team</strong></p>
+                        <p><strong>Emergency Email:</strong> <a href="mailto:info.tfamglobal@gmail.com">info.tfamglobal@gmail.com</a></p>
+                        <p><strong>Response Time:</strong> Within 2 hours during business hours</p>
+                        <p><strong>24/7 Emergency:</strong> Critical security issues handled immediately</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 13 -->
+        <div class="accordion">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <h2>13. Regular Security Reviews</h2>
+                <span class="accordion-icon">+</span>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-inner">
+                    <p>We continuously improve our security posture through:</p>
+                    
+                    <ul>
+                        <li><strong>Quarterly Security Audits:</strong> Internal security reviews and assessments</li>
+                        <li><strong>Annual External Audits:</strong> Third-party security audits and certifications</li>
+                        <li><strong>Threat Intelligence:</strong> Monitoring of emerging threats and vulnerabilities</li>
+                        <li><strong>Security Committee:</strong> Regular meetings to review security policies and incidents</li>
+                        <li><strong>Continuous Improvement:</strong> Implementation of lessons learned from incidents and audits</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 14 -->
+        <div class="accordion">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <h2>14. Updates to This Security Policy</h2>
+                <span class="accordion-icon">+</span>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-inner">
+                    <p>This Security Policy may be updated to reflect:</p>
+                    <ul>
+                        <li>Changes in our security practices and technologies</li>
+                        <li>New regulatory requirements</li>
+                        <li>Emerging security threats and best practices</li>
+                        <li>Feedback from security audits and assessments</li>
+                    </ul>
+                    
+                    <p>Significant changes will be communicated via:</p>
+                    <ul>
+                        <li>Email notification to registered users</li>
+                        <li>Prominent notice on our website</li>
+                        <li>Update to the "Last Updated" date at the top of this policy</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 15 -->
+        <div class="accordion">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <h2>15. Contact Information</h2>
+                <span class="accordion-icon">+</span>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-inner">
+                    <p>For security-related questions, concerns, or reports:</p>
+                    
+                    <div class="contact-info">
+                        <p><strong>TFAM Global Security Team</strong></p>
+                        <p><strong>General Inquiries:</strong> <a href="mailto:info.tfamglobal@gmail.com">info.tfamglobal@gmail.com</a></p>
+                        <p><strong>Vulnerability Reports:</strong> <a href="mailto:info.tfamglobal@gmail.com">info.tfamglobal@gmail.com</a></p>
+                        <p><strong>Privacy Concerns:</strong> <a href="mailto:info.tfamglobal@gmail.com">info.tfamglobal@gmail.com</a></p>
+                        <p><strong>Website:</strong> <a href="https://tfamglobal.org">tfamglobal.org</a></p>
+                    </div>
+                    
+                    <hr style="margin: 3rem 0; border: none; border-top: 2px solid var(--off-white);">
+                    
+                    <div class="info-box">
+                        <p><strong>Our Security Commitment:</strong> We continuously evaluate and improve our security measures to protect your information and maintain your trust. Security is not a one-time effort but an ongoing commitment that we take seriously at every level of our organization.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <p style="text-align: center; margin-top: 3rem;">
             <a href="index.html" class="back-link">Return to Homepage</a>
         </p>
     </div>
+
+    <script>
+        function toggleAccordion(header) {
+            const accordion = header.parentElement;
+            const isActive = accordion.classList.contains('active');
+            
+            // Close all accordions
+            document.querySelectorAll('.accordion').forEach(acc => {
+                acc.classList.remove('active');
+            });
+            
+            // Open clicked accordion if it wasn't active
+            if (!isActive) {
+                accordion.classList.add('active');
+            }
+        }
+
+        let allExpanded = false;
+        function toggleAll() {
+            const accordions = document.querySelectorAll('.accordion');
+            const button = document.querySelector('.expand-all-btn');
+            
+            if (allExpanded) {
+                // Collapse all
+                accordions.forEach(acc => acc.classList.remove('active'));
+                button.textContent = 'Expand All Sections';
+                allExpanded = false;
+            } else {
+                // Expand all
+                accordions.forEach(acc => acc.classList.add('active'));
+                button.textContent = 'Collapse All Sections';
+                allExpanded = true;
+            }
+        }
+
+        // Optional: Add keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.target.closest('.accordion-header')) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    toggleAccordion(e.target.closest('.accordion-header'));
+                }
+            }
+        });
+    </script>
 </body>
 </html>
