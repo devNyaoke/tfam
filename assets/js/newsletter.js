@@ -100,7 +100,7 @@
                 // TODO: Send to actual newsletter service
                      // Google Form submission URL
             const GOOGLE_FORM_ID = '1FAIpQLSd_dlu-v0-BXjJKoElb9_4EwHOXt_5wABgtXqm6PYXsACUzHw'; // From your newsletter form URL
-            const EMAIL_ENTRY = 'entry.2'; // Your email field ID
+            const EMAIL_ENTRY = 'entry.1046451193'; // Your email field ID
             
             const googleFormURL = 'https://docs.google.com/forms/d/e/' + GOOGLE_FORM_ID + '/formResponse';
             
