@@ -537,7 +537,7 @@
                 subtitle: 'Cuba, Mexico',
                 presbyters: [
                     { name: 'Rev. Dr. Jaime Galarza', initials: 'City of Refuge and Las Memoras Tijuana, Casa Debora', image: 'assets/images/presbyters/jaime-galarza.jpg' },
-                    { name: 'Rev. Alba Onofrio', initials: '', image: 'assets/images/presbyters/alba-onofrio.jpg' }
+                    { name: 'Rev. Alba Onofrio', initials: '', image: 'assets/images/presbyters/' }
                 ]
             },
             'central-america': {
