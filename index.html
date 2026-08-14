@@ -142,15 +142,20 @@
                             <img src="assets/images/3.jpg" alt="Rev. Dr. Andrea E. Vassell" class="leader-img">
                             <div class="leader-placeholder"></div>
                         </div>
-                        <div class="leader-info" onclick="openProfileModal('john-doe')">
-                            <div class="modal-content">
-                                <button class="modal-close" onclick="closeProfileModal('john-doe')">&times;</button>
+                        <div class="leader-info">
                             <h3 class="leader-name">Bishop Andrea E. Vassell</h3>
                             <p class="leader-role">Bishop of Global Ministries</p>
                             <p class="leader-location">The Fellowship of Affirming Ministries</p>
                             <div class="leader-quote">"Iron Sharpens Iron"</div>
-                            <div class="profile-modal" id="john-doe">
-                             
+                            <div class="profile-card" onclick="openProfileModal('john-doe')">
+                                  <h3>John Doe</h3>
+                                </div>
+                                
+                                <div class="profile-modal" id="john-doe">
+                                  <div class="modal-overlay" onclick="closeProfileModal('john-doe')"></div>
+                                  <div class="modal-content">
+                                    <button class="modal-close" onclick="closeProfileModal('john-doe')">&times;</button>
+            
                                 <h2>Bishop Dr. Andrea E. Vassell</h2>
                                 <p>Dr. Andrea E. Vassell is a global executive leader at the intersection of faith, public health, gender justice, and social transformation. A Registered Nurse, theologian, educator, and nonprofit executive, she is recognized for designing and leading initiatives that strengthen communities, cultivate ethical leadership, and advance the dignity and flourishing of historically marginalized people.</p>
                                 <p>She serves as Bishop of Global Ministries for The Fellowship of Affirming Ministries (TFAM), where she provides theological, pastoral, and strategic leadership to ministries throughout Africa, Asia, Europe, the Caribbean, and the Americas. In this role, she works alongside faith leaders to strengthen global partnerships, leadership development, and justice-centered ministry.</p>
