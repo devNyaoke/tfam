@@ -533,7 +533,7 @@
                 ]
             },
             'south-america': {
-                title: 'South America & the Caribbean',
+                title: 'Latin America & the Caribbean',
                 subtitle: 'Cuba, Mexico',
                 presbyters: [
                     { name: 'Rev. Dr. Jaime Galarza', initials: 'City of Refuge and Las Memoras Tijuana, Casa Debora', image: 'assets/images/presbyters/jaime-galarza.jpg' },
