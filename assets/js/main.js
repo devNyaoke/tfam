@@ -291,7 +291,17 @@
             });
         }
     }
-
+    //========================================
+    // BIO MODAL
+    //========================================
+    function openProfileModal(id) {
+      document.getElementById(id).classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeProfileModal(id) {
+      document.getElementById(id).classList.remove('active');
+      document.body.style.overflow = '';
+    }
     // ========================================
     // NEWSLETTER POPUP
     // ========================================
