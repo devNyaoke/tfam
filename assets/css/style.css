@@ -633,6 +633,34 @@
             border-top: 2px solid var(--off-white);
         }
 
+        .profile-modal {
+          display: none;
+          position: fixed;
+          inset: 0;
+          z-index: 1000;
+          align-items: center;
+          justify-content: center;
+        }
+        .profile-modal.active { display: flex; }
+        
+        .modal-overlay {
+          position: absolute;
+          inset: 0;
+          background: rgba(0,0,0,0.6);
+        }
+        
+        .modal-content {
+          position: relative;
+          background: #fff;
+          border-radius: 12px;
+          padding: 2rem;
+          max-width: 500px;
+          width: 90%;
+          max-height: 85vh;
+          overflow-y: auto;
+          z-index: 1001;
+        }
+
         /* ==================== MAP SECTION ==================== */
         .map-section {
             padding: 2rem 1rem;
