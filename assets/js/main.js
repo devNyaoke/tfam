@@ -537,7 +537,7 @@
                 subtitle: 'Cuba, Mexico',
                 presbyters: [
                     { name: 'Rev. Dr. Jaime Galarza', initials: 'City of Refuge and Las Memoras Tijuana, Casa Debora', image: 'assets/images/presbyters/jaime-galarza.jpg' },
-                    { name: 'Rev. Alba Onofrio', initials: '', image: 'assets/images/presbyters/' }
+                    { name: 'Rev. Alba Onofrio', initials: '', image: 'assets/images/presbyters/Rev. Alba Onofrio.jpg' }
                 ]
             },
             'central-america': {
@@ -559,7 +559,7 @@
                 title: 'West Africa',
                 subtitle: 'Regional Leadership',
                 presbyters: [
-                    { name: 'Information Loading...', initials: 'IDNOWA', image: 'assets/images/presbyters/IDNOWA.jpg' }
+                    { name: 'Information Loading...', initials: 'IDNOWA', image: 'assets/images/presbyters/IDNOWA.png' }
                 ]
             },
             'south-africa': {
