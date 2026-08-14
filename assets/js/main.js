@@ -525,13 +525,6 @@
     function initInteractiveMap() {
         // Regional presbyter data
         const regionData = {
-            'asia': {
-                title: 'Asia',
-                subtitle: 'Regional Leadership',
-                presbyters: [
-                    { name: 'Rev. Gary Chan', initials: 'GC', image: 'assets/images/presbyters/gary-chan.jpg' }
-                ]
-            },
             'uk': {
                 title: 'United Kingdom & Europe',
                 subtitle: 'London',
@@ -566,7 +559,7 @@
                 title: 'West Africa',
                 subtitle: 'Regional Leadership',
                 presbyters: [
-                    { name: 'Information Loading...', initials: 'IDNEWA', image: 'assets/images/presbyters/nigeria.jpg' }
+                    { name: 'Information Loading...', initials: 'IDNOWA', image: 'assets/images/presbyters/IDNOWA.jpg' }
                 ]
             },
             'south-africa': {
