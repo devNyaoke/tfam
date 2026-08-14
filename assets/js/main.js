@@ -294,14 +294,38 @@
     //========================================
     // BIO MODAL
     //========================================
-    function openProfileModal(id) {
-      document.getElementById(id).classList.add('active');
-      document.body.style.overflow = 'hidden';
+    document.addEventListener('DOMContentLoaded', function () {
+    const modal = document.getElementById('imageModal');
+    const modalImg = document.getElementById('modalImg');
+    const modalCaption = document.getElementById('modalCaption');
+
+    document.addEventListener('click', function (e) {
+        const card = e.target.closest('.leader-card');
+        if (card) {
+            modalImg.src = card.dataset.img;
+            modalImg.alt = card.dataset.name;
+            modalCaption.textContent = card.dataset.name;
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            return;
+        }
+
+        if (e.target.classList.contains('image-modal-overlay') || e.target.classList.contains('image-modal-close')) {
+            closeModal();
+        }
+    });
+
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
+            closeModal();
+        }
+    });
+
+    function closeModal() {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
     }
-    function closeProfileModal(id) {
-      document.getElementById(id).classList.remove('active');
-      document.body.style.overflow = '';
-    }
+});
     // ========================================
     // NEWSLETTER POPUP
     // ========================================
